@@ -292,4 +292,18 @@ public static class Defines
     public const int ITEM_ICE_RESIST_P = 23;                                                //Бонус резиста от холода
     public const int ITEM_ELECTRIC_RESIST_P = 24;                                           //Бонус резиста от молнии
     public const int ITEM_SPEED_P = 25;                                                     //Бонус скорости передвижения
+
+    ///////////////////////////////////////
+    /// Описание параметров кла Ресурсы ///
+    ///////////////////////////////////////
+
+    //Ресурсы
+    public const int GOLD = 0;               //Роскошь
+    public const int WOOD = 1;               //Дерево
+    public const int ROCK = 2;               //Камень
+    public const int IRON = 3;               //Железо
+    public const int BONES = 4;              //Плоть
+    public const int SOULS = 5;              //Души
+    public const int BODY = 6;               //Живое мясо/Люди
+    public const int REAL = 7;               //Премиум валюта
 }

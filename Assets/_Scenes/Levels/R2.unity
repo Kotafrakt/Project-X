@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 507846}
   - component: {fileID: 507848}
   - component: {fileID: 507845}
+  - component: {fileID: 507849}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -232,8 +233,26 @@ MonoBehaviour:
   wayPointsUnit2: []
   finish: {fileID: 615643883}
   canvas: {fileID: 596699608}
+  spawnButtons:
+  - {fileID: 1301139148}
   finished: {fileID: 8971027820237618951, guid: 60096e0950e0feb479531fcbc202941f,
     type: 3}
+--- !u!114 &507849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &278654775
 GameObject:
   m_ObjectHideFlags: 0
@@ -10573,6 +10592,87 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1301139147
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 493.89453
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063217, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860296145739063222, guid: ff067969c8399c84f90941503b0f740e,
+        type: 3}
+      propertyPath: m_Name
+      value: SPointBttn
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff067969c8399c84f90941503b0f740e, type: 3}
+--- !u!114 &1301139148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2286621663075246006, guid: ff067969c8399c84f90941503b0f740e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1301139147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf00d17e07b6024f8c466d22f844fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1415944094
 GameObject:
   m_ObjectHideFlags: 0

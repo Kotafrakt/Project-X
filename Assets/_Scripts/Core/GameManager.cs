@@ -63,18 +63,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     #region БЛОК СОХРАНЕНИЯ И ЗАГРУЗКИ
 
@@ -183,6 +171,7 @@ public class GameManager : MonoBehaviour
         generals.Add(CreateGeneral.GenarateGeneral());
         generals.Add(CreateGeneral.GenarateGeneral());
         CleanMap();
+        AvailableList.StartDictionary();
     }
 
     #endregion

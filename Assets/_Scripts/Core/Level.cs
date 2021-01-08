@@ -13,11 +13,13 @@ public class Level : MonoBehaviour
     private int needFinished;
 
     public GameObject[] spawnPoint;
+    public SpawnBtn[] spawnButtons;
     public Transform[] wayPointsUnit0;
     public Transform[] wayPointsUnit1;
     public Transform[] wayPointsUnit2;
     public Transform finish;
     public Transform canvas;
+    
 
     public GameObject finished;
     GameObject playPanelUp;
@@ -68,7 +70,7 @@ public class Level : MonoBehaviour
         CreatePanelStartLevel();
         СоздатьЛевелМеню();
         CreateFinished();
-        LevelManager.instance.StartLevel(levelName, wayPointsUnit0, wayPointsUnit1, wayPointsUnit2, finish, spawnPoint, needFinished, mana);
+        LevelManager.instance.StartLevel(levelName, wayPointsUnit0, wayPointsUnit1, wayPointsUnit2, finish, spawnPoint, needFinished, mana, spawnButtons);
     }
 
     void Update()
@@ -316,5 +318,10 @@ public class Level : MonoBehaviour
     void ToGlobal()
     {
         SceneManager.LoadScene("GlobalMap");
+    }
+
+    public void SetSpawnPoint(SpawnBtn spoint)
+    {
+        LevelManager.instance.SetSpawnPoint(spoint);
     }
 }

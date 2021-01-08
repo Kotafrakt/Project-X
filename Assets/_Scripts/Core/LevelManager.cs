@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public List<PlayUnit> UnitList = new List<PlayUnit>();
 
+    public List<SpawnBtn> sPointBtnList = new List<SpawnBtn>();
+
     Transform canvas;
     private Transform[] wayPointsUnit0;
     private Transform[] wayPointsUnit1;
@@ -78,9 +80,13 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void StartLevel(string name, Transform[] wayPU0, Transform[] wayPU1, Transform[] wayPU2, Transform finish, GameObject[] sp, int needFinished, Text mana)
+    public void StartLevel(string name, Transform[] wayPU0, Transform[] wayPU1, Transform[] wayPU2, Transform finish, GameObject[] sp, int needFinished, Text mana, SpawnBtn[] spBtn)
     {
         Hero.PARAMS[HERO_MANA_CURRENT] = Hero.PARAMS[HERO_MANA_MAX];
+        foreach(SpawnBtn sb in spBtn)
+        {
+            sPointBtnList.Add(sb);
+        }        
         this.levelName = name;
         this.mana = mana;
         spawnPoint = sp;
@@ -110,16 +116,45 @@ public class LevelManager : MonoBehaviour
         runingUnit[UnitType.ZombieV2] = false;
     }
 
+    public void SetSpawnPoint(SpawnBtn sb)
+    {
+        foreach(SpawnBtn spBtn in sPointBtnList)
+        {
+            if(spBtn == sb)
+            {
+                spBtn.isSelected = !spBtn.isSelected;
+                sb.isSelected = spBtn.isSelected;
+                if (sb.isSelected) sb.SelectPoint();
+                else sb.UnSelectPoint();
+            }
+        }
+    }
+
     public void SpawnUnit(Unit unit, float spDelay)
     {
-        int i;
-        Transform[] wp = null;
-        if (Random.Range(0, 99) < 49)
+        int numSpawn = 0;
+        List<int> numbers = new List<int>();
+        foreach (SpawnBtn spBtn in sPointBtnList)
         {
-            i = 0;
+            if (spBtn.isSelected) numbers.Add(spBtn.spawnNumber);
         }
-        else i = 1;
-        switch (i)
+        if(numbers.Count > 0)
+        {
+            int index;
+            if(numbers.Count == 2)
+            {
+                if (Random.Range(0, 99) < 49) index = 0;
+                else index = 1;
+                numSpawn = numbers[index];
+            }
+            else numSpawn = numbers[Random.Range(0, numbers.Count -1)];
+        }
+        else
+        {
+            Debug.Log("Spawn not faund!");
+        }
+        Transform[] wp = null;
+        switch (numSpawn)
         {
             case 0:
                 wp = wayPointsUnit0;
@@ -134,7 +169,7 @@ public class LevelManager : MonoBehaviour
         whichUnitsToSpawn = unit.prefab;
         spawnDelay = spDelay;
         totalUnits = Mathf.Clamp(1000, 0, (int)unit.PARAMS[UNIT_COUNT]);
-        StartCoroutine(Spawn(unit, i, wp));
+        StartCoroutine(Spawn(unit, numSpawn, wp));
     }
 
     IEnumerator Spawn(Unit unit, int spNum, Transform[] wp)

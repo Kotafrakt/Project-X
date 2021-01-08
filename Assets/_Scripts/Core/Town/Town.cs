@@ -22,6 +22,7 @@ public class Town : MonoBehaviour
     private GameObject слотыСоздания;
     [SerializeField]
     private Image картинкаЮнита;
+    public ToggleGroup тоглы;
 
     [Header("Арена")]
     [SerializeField]

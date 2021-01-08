@@ -3,6 +3,7 @@
 public class General
 {
     public float[] PARAMS = new float[42];
+    public UnitType type;
     public string nameGeneral;                                                          //Имя Генерала
     public string descGeneral;
     public int[] expForLvlUp;                                                           //Сколько нужно опыта, для левел апа. Хз. Если можно это сделать масивом, то массив. 
