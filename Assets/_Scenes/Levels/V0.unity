@@ -219,7 +219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: V0
   needFinished: 0
-  spawnPoint: {fileID: 1902238347}
+  spawnPoint:
+  - {fileID: 1902238347}
   wayPointsUnit0:
   - {fileID: 367573581}
   - {fileID: 649717487}

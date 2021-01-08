@@ -219,7 +219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: R0
   needFinished: 2
-  spawnPoint: {fileID: 1902238347}
+  spawnPoint:
+  - {fileID: 1902238347}
   wayPointsUnit0:
   - {fileID: 367573581}
   - {fileID: 649717487}
@@ -11096,6 +11097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRadius
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020322853907337568, guid: ff2bfa05e45a1a74bad8841ae025c7df,
+        type: 3}
+      propertyPath: timeBetWeenAttacks
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4914534250389608692, guid: ff2bfa05e45a1a74bad8841ae025c7df,
         type: 3}

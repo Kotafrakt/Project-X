@@ -33,7 +33,7 @@ public static class CreateUnit
                 unit.img = ResManager.instance.unitImg[1];
                 unit.img2 = ResManager.instance.unitImg2[1];
                 unit.PARAMS[UNIT_COST] = 10;
-                unit.PARAMS[UNIT_HP_MAX] = 10;
+                unit.PARAMS[UNIT_HP_MAX] = 20;
                 unit.PARAMS[UNIT_HP_REGEN] = 2;
                 unit.PARAMS[UNIT_ATTACK_DELAY] = 10;
                 unit.PARAMS[UNIT_SPEED] = 0.4f;
@@ -52,7 +52,7 @@ public static class CreateUnit
                 unit.img = ResManager.instance.unitImg[2];
                 unit.img2 = ResManager.instance.unitImg2[2];
                 unit.PARAMS[UNIT_COST] = 15;
-                unit.PARAMS[UNIT_HP_MAX] = 15;
+                unit.PARAMS[UNIT_HP_MAX] = 30;
                 unit.PARAMS[UNIT_HP_REGEN] = 3;
                 unit.PARAMS[UNIT_ATTACK_DELAY] = 5;
                 unit.PARAMS[UNIT_SPEED] = 0.6f;
@@ -71,7 +71,7 @@ public static class CreateUnit
                 unit.img = ResManager.instance.unitImg[3];
                 unit.img2 = ResManager.instance.unitImg2[3];
                 unit.PARAMS[UNIT_COST] = 5;
-                unit.PARAMS[UNIT_HP_MAX] = 5;
+                unit.PARAMS[UNIT_HP_MAX] = 10;
                 unit.PARAMS[UNIT_HP_REGEN] = 1;
                 unit.PARAMS[UNIT_ATTACK_DELAY] = 15;
                 unit.PARAMS[UNIT_SPEED] = 0.4f;
@@ -90,7 +90,7 @@ public static class CreateUnit
                 unit.img = ResManager.instance.unitImg[4];
                 unit.img2 = ResManager.instance.unitImg2[4];
                 unit.PARAMS[UNIT_COST] = 10;
-                unit.PARAMS[UNIT_HP_MAX] = 10;
+                unit.PARAMS[UNIT_HP_MAX] = 20;
                 unit.PARAMS[UNIT_HP_REGEN] = 2;
                 unit.PARAMS[UNIT_ATTACK_DELAY] = 10;
                 unit.PARAMS[UNIT_SPEED] = 0.4f;
@@ -109,7 +109,7 @@ public static class CreateUnit
                 unit.img = ResManager.instance.unitImg[5];
                 unit.img2 = ResManager.instance.unitImg2[5];
                 unit.PARAMS[UNIT_COST] = 15;
-                unit.PARAMS[UNIT_HP_MAX] = 15;
+                unit.PARAMS[UNIT_HP_MAX] = 30;
                 unit.PARAMS[UNIT_HP_REGEN] = 3;
                 unit.PARAMS[UNIT_ATTACK_DELAY] = 5;
                 unit.PARAMS[UNIT_SPEED] = 0.6f;

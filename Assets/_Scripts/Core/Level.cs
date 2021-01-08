@@ -12,7 +12,7 @@ public class Level : MonoBehaviour
     [SerializeField]
     private int needFinished;
 
-    public GameObject spawnPoint;
+    public GameObject[] spawnPoint;
     public Transform[] wayPointsUnit0;
     public Transform[] wayPointsUnit1;
     public Transform[] wayPointsUnit2;

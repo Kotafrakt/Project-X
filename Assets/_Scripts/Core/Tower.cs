@@ -14,6 +14,8 @@ public class Tower : MonoBehaviour
     float attackCouter;
     bool isAttacking = false;
     Unit unit;
+    [SerializeField]
+    float speedProjectile = 10f; 
 
     void Start()
     {
@@ -110,7 +112,7 @@ public class Tower : MonoBehaviour
                 if (projectile != null)
                 {
                     projectile.transform.rotation = Quaternion.AngleAxis(angleDirection, Vector3.forward);
-                    projectile.transform.localPosition = Vector2.MoveTowards(projectile.transform.localPosition, targetEnemy.transform.localPosition, 10f * Time.deltaTime);
+                    projectile.transform.localPosition = Vector2.MoveTowards(projectile.transform.localPosition, targetEnemy.transform.localPosition, speedProjectile * Time.deltaTime);
                 }
             }
             yield return null;

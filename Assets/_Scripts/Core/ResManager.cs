@@ -34,6 +34,7 @@ public class ResManager : MonoBehaviour
 
     [Header("Игровые объекты")]
     public GameObject portal;
+    public GameObject Explosion;
     public Sprite zeroSlot;
 
     [Header("Картинки вещей Компании")]

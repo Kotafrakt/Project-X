@@ -206,6 +206,8 @@ MonoBehaviour:
   genEImg2:
   - {fileID: 21300000, guid: cb8f1653637103f4eb320e9f664fc164, type: 3}
   portal: {fileID: 4140005374623762141, guid: 28e6c3528127e604d968450030e2749d, type: 3}
+  Explosion: {fileID: 2291142308379363404, guid: ca9509fb5fcb90c4e9b099370e3946b2,
+    type: 3}
   zeroSlot: {fileID: 21300000, guid: 02e2b87f833fd5240b71b16c05e32aa1, type: 3}
   imgHead:
   - {fileID: 21300000, guid: 6dd0decdd212d7a43a34b933e54fad7c, type: 3}

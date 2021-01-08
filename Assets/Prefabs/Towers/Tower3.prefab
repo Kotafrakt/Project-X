@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 65be6a2b5b66a2641a3f9567c8e98a0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetWeenAttacks: 1
-  attackRadius: 2
+  attackRadius: 10
   projectile: {fileID: 874284294070319579, guid: 77dfa84fd9bf0404d913fbb5d7ebcae7,
     type: 3}
-  units: []
+  speedProjectile: 10

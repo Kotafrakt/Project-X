@@ -138,6 +138,49 @@ public class PlayUnit : MonoBehaviour
 
         if (endDamage < 0)
             endDamage = 0;
+
+        GameObject gt = Instantiate(ResManager.instance.DamageText, transform);
+        gt.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
+        DamageText dt = gt.GetComponent<DamageText>();
+        dt.startMitonPlay("-" + endDamage, Colors.RedColor);
+
+        if (hpCurrent - endDamage > 0)
+        {
+            hpCurrent -= endDamage;
+            //Manager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Hit, 0.6f);
+            //anim.Play("Hurt");
+        }
+        else
+        {
+            //anim.SetTrigger("didDie");
+            Die();
+        }
+        if(newP.PType == ProjectileType.fireball)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, newP.radius);
+            foreach(Collider2D hit in colliders)
+            {
+                PlayUnit playUnit = hit.transform.GetComponent<PlayUnit>();
+                if(playUnit != null && playUnit !=this)
+                {
+                    GameObject go = Instantiate(ResManager.instance.Explosion, transform);
+                    go.transform.position = transform.localPosition;
+                    playUnit.UnitHit2(newP.AttackDamage);
+                }
+            }
+        }
+    }
+
+    public void UnitHit2(int damage)
+    {
+        int endDamage = damage/2;
+
+        if (endDamage < 0)
+            endDamage = 0;
+        GameObject gt = Instantiate(ResManager.instance.DamageText, transform);
+        gt.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 1, transform.localPosition.z);
+        DamageText dt = gt.GetComponent<DamageText>();
+        dt.startMitonPlay("-" + endDamage, Colors.RedColor);
         if (hpCurrent - endDamage > 0)
         {
             hpCurrent -= endDamage;

@@ -21,8 +21,14 @@ public class Projectile : MonoBehaviour
     EffectAttack effect;
     [SerializeField]
     int effectValue;
+    public float radius = 5f;
 
     Unit unitAttacker;
+
+    private void Start()
+    {
+        Destroy(gameObject, 2f);
+    }
 
     public Unit UnitAttacker
     {

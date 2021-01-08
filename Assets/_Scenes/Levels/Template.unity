@@ -218,7 +218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: R0
-  spawnPoint: {fileID: 1902238347}
+  needFinished: 0
+  spawnPoint:
+  - {fileID: 1902238347}
   wayPointsUnit0:
   - {fileID: 367573581}
   - {fileID: 649717487}
@@ -231,7 +233,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   wayPointsUnit2: []
+  finish: {fileID: 0}
   canvas: {fileID: 596699608}
+  finished: {fileID: 0}
 --- !u!1 &278654775
 GameObject:
   m_ObjectHideFlags: 0

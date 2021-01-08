@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
     private Transform[] wayPointsUnit1;
     private Transform[] wayPointsUnit2;
     private Transform finish;
-    private GameObject spawnPoint;
+    private GameObject[] spawnPoint;
     private int needFinished;
     private int countFinished;
 
@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void StartLevel(string name, Transform[] wayPU0, Transform[] wayPU1, Transform[] wayPU2, Transform finish, GameObject sp, int needFinished, Text mana)
+    public void StartLevel(string name, Transform[] wayPU0, Transform[] wayPU1, Transform[] wayPU2, Transform finish, GameObject[] sp, int needFinished, Text mana)
     {
         Hero.PARAMS[HERO_MANA_CURRENT] = Hero.PARAMS[HERO_MANA_MAX];
         this.levelName = name;
@@ -112,13 +112,32 @@ public class LevelManager : MonoBehaviour
 
     public void SpawnUnit(Unit unit, float spDelay)
     {
+        int i;
+        Transform[] wp = null;
+        if (Random.Range(0, 99) < 49)
+        {
+            i = 0;
+        }
+        else i = 1;
+        switch (i)
+        {
+            case 0:
+                wp = wayPointsUnit0;
+                break;
+            case 1:
+                wp = wayPointsUnit1;
+                break;
+            case 2:
+                wp = wayPointsUnit2;
+                break;
+        }
         whichUnitsToSpawn = unit.prefab;
         spawnDelay = spDelay;
         totalUnits = Mathf.Clamp(1000, 0, (int)unit.PARAMS[UNIT_COUNT]);
-        StartCoroutine(Spawn(unit));
+        StartCoroutine(Spawn(unit, i, wp));
     }
 
-    IEnumerator Spawn(Unit unit)
+    IEnumerator Spawn(Unit unit, int spNum, Transform[] wp)
     {
         if (!runingUnit[unit.type])
         {
@@ -133,9 +152,9 @@ public class LevelManager : MonoBehaviour
                 if (unit.PARAMS[UNIT_COUNT] > 0)
                 {
                     GameObject portal = Instantiate(ResManager.instance.portal) as GameObject;
-                    portal.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y + 0.8f, spawnPoint.transform.position.z);
+                    portal.transform.position = new Vector3(spawnPoint[spNum].transform.position.x, spawnPoint[spNum].transform.position.y + 0.8f, spawnPoint[spNum].transform.position.z);
                     GameObject newUnit = Instantiate(whichUnitsToSpawn) as GameObject;
-                    newUnit.transform.position = spawnPoint.transform.position;
+                    newUnit.transform.position = spawnPoint[spNum].transform.position;
                     PlayUnit pUnit = newUnit.GetComponent<PlayUnit>();
                     pUnit.type = unit.type;
                     pUnit.hp = unit.PARAMS[UNIT_HP_MAX];
@@ -149,7 +168,7 @@ public class LevelManager : MonoBehaviour
                     pUnit.iceResist = unit.PARAMS[UNIT_ICE_RESIST];
                     pUnit.electricResist = unit.PARAMS[UNIT_ELECTRIC_RESIST];
                     pUnit.IsDead = false;
-                    pUnit.wayPoints = wayPointsUnit0;
+                    pUnit.wayPoints = wp;
                     pUnit.finish = finish;
                     pUnit.baseUnit = unit;
                     UnitList.Add(pUnit);
@@ -164,7 +183,7 @@ public class LevelManager : MonoBehaviour
                 yield break;
             }
             yield return new WaitForSeconds(spawnDelay);
-            StartCoroutine(Spawn(unit));
+            StartCoroutine(Spawn(unit, spNum, wp));
         }
     }
 
