@@ -306,4 +306,36 @@ public static class Defines
     public const int SOULS = 5;              //Души
     public const int BODY = 6;               //Живое мясо/Люди
     public const int REAL = 7;               //Премиум валюта
+
+    //Целые предметы
+    //Артефакты
+    public const int ARTIFACT_V0 = 8;           //Неизвестный Артефакт
+    public const int ARTIFACT_V1 = 9;           //Неизвестный Артефакт 1 грейда
+    public const int ARTIFACT_V2 = 10;          //Неизвестный Артефакт 2 грейда
+
+    //Эквип 
+    public const int EQUIPMENT_V0 = 11;         //Неизвестная Экипировка
+    public const int EQUIPMENT_V1 = 12;         //Неизвестная Экипировка 1 грейда
+    public const int EQUIPMENT_V2 = 13;         //Неизвестная Экипировка 2 грейда
+
+    //Юниты
+    public const int UNIT_V0 = 14;              //Неизвестный Юнит
+    public const int UNIT_V1 = 15;              //Неизвестный Юнит 1 грейда
+    public const int UNIT_V2 = 16;              //Неизвестный Юнит 2 грейда
+
+    //Сборные предметы
+    //Артефакты
+    public const int ARTIFACT_V0_PARTS = 17;           //Неизвестный Артефакт состоящий из N частей
+    public const int ARTIFACT_V1_PARTS = 18;           //Неизвестный Артефакт 1 грейда состоящий из N частей
+    public const int ARTIFACT_V2_PARTS = 19;          //Неизвестный Артефакт 2 грейда состоящий из N частей
+
+    //Эквип 
+    public const int EQUIPMENT_V0_PARTS = 20;         //Неизвестная Экипировка состоящий из N частей
+    public const int EQUIPMENT_V1_PARTS = 21;         //Неизвестная Экипировка 1 грейда состоящий из N частей
+    public const int EQUIPMENT_V2_PARTS = 22;         //Неизвестная Экипировка 2 грейда состоящий из N частей
+
+    //Юниты
+    public const int UNIT_V0_PARTS = 23;              //Неизвестный Юнит состоящий из N частей
+    public const int UNIT_V1_PARTS = 24;              //Неизвестный Юнит 1 грейда состоящий из N частей
+    public const int UNIT_V2_PARTS = 25;              //Неизвестный Юнит 2 грейда состоящий из N частей
 }

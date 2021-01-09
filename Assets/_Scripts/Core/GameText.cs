@@ -8,7 +8,22 @@
             switch (type)
             {
                 case UnitType.SkeletonV0:
-                    name = "Скилет";
+                    name = "СкелетV0";
+                    break;
+                case UnitType.SkeletonV1:
+                    name = "СкелетV1";
+                    break;
+                case UnitType.SkeletonV2:
+                    name = "СкелетV2";
+                    break;
+                case UnitType.ZombieV0:
+                    name = "ЗомбиV0";
+                    break;
+                case UnitType.ZombieV1:
+                    name = "ЗомбиV1";
+                    break;
+                case UnitType.ZombieV2:
+                    name = "ЗомбиV2";
                     break;
             }
         }
@@ -17,10 +32,26 @@
             switch (type)
             {
                 case UnitType.SkeletonV0:
-                    name = "Skeleton";
+                    name = "SkeletonV0";
+                    break;
+                case UnitType.SkeletonV1:
+                    name = "SkeletonV1";
+                    break;
+                case UnitType.SkeletonV2:
+                    name = "SkeletonV2";
+                    break;
+                case UnitType.ZombieV0:
+                    name = "ZombieV0";
+                    break;
+                case UnitType.ZombieV1:
+                    name = "ZombieV1";
+                    break;
+                case UnitType.ZombieV2:
+                    name = "ZombieV2";
                     break;
             }
         }
+
         return name;
     }
 
@@ -32,7 +63,13 @@
             switch (type)
             {
                 case UnitType.SkeletonV0:
-                    description = "Скилет первого уровня";
+                    description = "Скелет V0";
+                    break;
+                case UnitType.SkeletonV1:
+                    description = "Скелет V1";
+                    break;
+                case UnitType.SkeletonV2:
+                    description = "Скелет V2";
                     break;
             }
         }
@@ -41,7 +78,13 @@
             switch (type)
             {
                 case UnitType.SkeletonV0:
-                    description = "The skeleton of the first level";
+                    description = "The skeleton of the V0";
+                    break;
+                case UnitType.SkeletonV1:
+                    description = "The skeleton of the V1";
+                    break;
+                case UnitType.SkeletonV2:
+                    description = "The skeleton of the V2";
                     break;
             }
         }

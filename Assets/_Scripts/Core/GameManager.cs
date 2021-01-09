@@ -6,6 +6,7 @@ using static Defines;
 
 public class GameManager : MonoBehaviour
 {
+    public static int[] resource = new int[26];
     public static GameManager instance = null;
     public bool isRussian;
     public static bool isFirstLoad = false;
@@ -26,8 +27,6 @@ public class GameManager : MonoBehaviour
     /// Castle Hiro
     [HideInInspector]
     public List<Unit> units = new List<Unit>(); //Доступное войско в замке
-    [HideInInspector]
-    public int resource;
 
     private void Awake()
     {
@@ -101,40 +100,52 @@ public class GameManager : MonoBehaviour
 
     public void FirstGame()
     {
-        GameResources.gold = 0;
-        GameResources.wood = 0;
-        GameResources.rock = 0;
-        GameResources.iron = 0;
-        GameResources.bones = 100;
-        GameResources.souls = 0;
-        GameResources.body = 0;
-        GameResources.real = 50;
+        resource[GOLD] = 0;
+        resource[WOOD] = 0;
+        resource[ROCK] = 0;
+        resource[IRON] = 0;
+        resource[BONES] = 100;
+        resource[SOULS] = 0;
+        resource[BODY] = 0;
+        resource[REAL] = 50;
 
-        GameResources.partsArtV0 = 0;
-        GameResources.artV0 = 0;
-        GameResources.partsArtV1 = 0;
-        GameResources.artV1 = 0;
-        GameResources.partsArtV2 = 0;
-        GameResources.artV2 = 0;
+        resource[ARTIFACT_V0] = 1;           //Неизвестный Артефакт
+        resource[ARTIFACT_V1] = 2;           //Неизвестный Артефакт 1 грейда
+        resource[ARTIFACT_V2] = 3;          //Неизвестный Артефакт 2 грейда
+        //Эквип 
+        resource[EQUIPMENT_V0] = 11;         //Неизвестная Экипировка
+        resource[EQUIPMENT_V1] = 12;         //Неизвестная Экипировка 1 грейда
+        resource[EQUIPMENT_V2] = 13;         //Неизвестная Экипировка 2 грейда
+        //Юниты
+        resource[UNIT_V0] = 11;              //Неизвестный Юнит
+        resource[UNIT_V1] = 12;              //Неизвестный Юнит 1 грейда
+        resource[UNIT_V2] = 13;              //Неизвестный Юнит 2 грейда
+        //Сборные предметы
+        //Артефакты
+        resource[ARTIFACT_V0_PARTS] = 14;           //Неизвестный Артефакт состоящий из N частей
+        resource[ARTIFACT_V1_PARTS] = 15;           //Неизвестный Артефакт 1 грейда состоящий из N частей
+        resource[ARTIFACT_V2_PARTS] = 16;          //Неизвестный Артефакт 2 грейда состоящий из N частей
+        //Эквип 
+        resource[EQUIPMENT_V0_PARTS] = 17;         //Неизвестная Экипировка состоящий из N частей
+        resource[EQUIPMENT_V1_PARTS] = 18;         //Неизвестная Экипировка 1 грейда состоящий из N частей
+        resource[EQUIPMENT_V2_PARTS] = 19;         //Неизвестная Экипировка 2 грейда состоящий из N частей
+        //Юниты
+        resource[UNIT_V0_PARTS] = 20;              //Неизвестный Юнит состоящий из N частей
+        resource[UNIT_V1_PARTS] = 21;              //Неизвестный Юнит 1 грейда состоящий из N частей
+        resource[UNIT_V2_PARTS] = 22;              //Неизвестный Юнит 2 грейда состоящий из N частей
 
-        GameResources.partsArmorV0 = 0;
-        GameResources.armorV0 = 0;
-        GameResources.partsArmorV1 = 0;
-        GameResources.armorV1 = 0;
-        GameResources.partsArmorV2 = 0;
-        GameResources.armorV2 = 0;
-
-        GameResources.partsMobsV0 = 0;
-        GameResources.mobsV0 = 0;
-        GameResources.partsMobsV1 = 0;
-        GameResources.mobsV1 = 0;
-        GameResources.partsMobsV2 = 0;
-        GameResources.mobsV2 = 0;
-
-        units.Add(CreateUnit.UnitCreate(UnitType.SkeletonV0));
+    units.Add(CreateUnit.UnitCreate(UnitType.SkeletonV0));
         units[0].PARAMS[UNIT_COUNT] = 50;
         units.Add(CreateUnit.UnitCreate(UnitType.ZombieV0));
         units[1].PARAMS[UNIT_COUNT] = 30;
+        units.Add(CreateUnit.UnitCreate(UnitType.SkeletonV1));
+        units[2].PARAMS[UNIT_COUNT] = 5;
+        units.Add(CreateUnit.UnitCreate(UnitType.ZombieV1));
+        units[3].PARAMS[UNIT_COUNT] = 3;
+        units.Add(CreateUnit.UnitCreate(UnitType.SkeletonV2));
+        units[4].PARAMS[UNIT_COUNT] = 0;
+        units.Add(CreateUnit.UnitCreate(UnitType.ZombieV2));
+        units[5].PARAMS[UNIT_COUNT] = 0;
 
         itemsArena.Add(CreateItem.Head_0());
         itemsArena.Add(CreateItem.Head_1());

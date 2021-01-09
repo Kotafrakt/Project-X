@@ -18,8 +18,8 @@ public class TownGenerals : Button
     protected override void Start()
     {
         town = Camera.main.transform.GetComponent<Town>();
-        text = transform.GetChild(0).GetComponent<Text>();
-        img = transform.GetChild(1).GetComponent<Image>();
+        text = transform.GetChild(1).GetComponent<Text>();
+        img = transform.GetChild(0).GetComponent<Image>();
     }
     private void FixedUpdate()
     {

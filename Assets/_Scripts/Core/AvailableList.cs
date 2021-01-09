@@ -8,14 +8,14 @@ public static class AvailableList
     {
         //Грейд 0
         availableUnit.Add(UnitType.SkeletonV0, true);
-        availableUnit.Add(UnitType.ZombieV0, true);
+        availableUnit.Add(UnitType.ZombieV0, false);
 
         //Грейд 1
         availableUnit.Add(UnitType.SkeletonV1, false);
         availableUnit.Add(UnitType.ZombieV1, false);
 
         //Грейд 2
-        availableUnit.Add(UnitType.SkeletonV2, false);
+        availableUnit.Add(UnitType.SkeletonV2, true);
         availableUnit.Add(UnitType.ZombieV2, false);
     }
 

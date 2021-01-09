@@ -7,175 +7,104 @@ using static Defines;
 
 public class Town : MonoBehaviour
 {
-    [Header("Казармы")]
+    //Разделы
+    [Header("Разделы")]
     [SerializeField]
-    private GameObject казармы;
-    [SerializeField]
-    private GameObject создание;
-    [SerializeField]
-    private GameObject наличие;
-    [SerializeField]
-    private GameObject геры;
-    [SerializeField]
-    private GameObject слотыНаличие;
-    [SerializeField]
-    private GameObject слотыСоздания;
-    [SerializeField]
-    private Image картинкаЮнита;
-    public ToggleGroup тоглы;
+    private GameObject алтарь;
+    AltarTown altarTown;
 
-    [Header("Арена")]
     [SerializeField]
     private GameObject арена;
+    ArenaTown arenaTown;
 
-    [Header("Герой")]
     [SerializeField]
     private GameObject герой;
+    HeroTown heroTown;
+
     [SerializeField]
-    private GameObject генералыНаличие;
-    private List<TownGenerals> слотыГенералов = new List<TownGenerals>();
+    private GameObject казармы;
+    BarracksTown barracksTown;
 
+    [SerializeField]
+    private GameObject лабаратория;
+    LabTown labTown;
 
-    private List<GameObject> слотыСозданияЮнитов = new List<GameObject>();
-    private List<GameObject> слотыНаличиеЮнитов = new List<GameObject>();
+    [SerializeField]
+    private GameObject рынок;
+    MarketTown marketTown;
+    
+    [SerializeField]
+    private GameObject квесты;
+    QuestsBoardTown questsBoardTown;
 
+    
 
-
-    public void ОткрытьКазармы()
+    private void Start()
     {
-        ЗаполненияСоздание();
-        казармы.SetActive(true);
-        создание.SetActive(true);
-        наличие.SetActive(false);
-        геры.SetActive(false);
-    }
-    public void ОткрытьСоздание()
-    {
-        ЗаполненияСоздание();
-        наличие.SetActive(false);
-        геры.SetActive(false);
-        создание.SetActive(true);
-    }
-    public void ОткрытьНаличие()
-    {
-        ЗаполненияНаличие();
-        создание.SetActive(false);
-        геры.SetActive(false);
-        наличие.SetActive(true);
-    }
-    public void ОткрытьГеры()
-    {
-        ЗаполнениеГенералы();
-        создание.SetActive(false);
-        наличие.SetActive(false);
-        геры.SetActive(true);
+        altarTown = Camera.main.transform.GetComponent<AltarTown>();
+        arenaTown = Camera.main.transform.GetComponent<ArenaTown>();
+        barracksTown = Camera.main.transform.GetComponent<BarracksTown>();
+        heroTown = Camera.main.transform.GetComponent<HeroTown>();
+        labTown = Camera.main.transform.GetComponent<LabTown>();
+        marketTown = Camera.main.transform.GetComponent<MarketTown>();
+        questsBoardTown = Camera.main.transform.GetComponent<QuestsBoardTown>();
     }
 
-    public void ЗаполнениеГенералы()
+    public void ОткрытьАлтарь()
     {
-        for (int i = 0; i < генералыНаличие.transform.childCount; i++)
-        {
-            TownGenerals tG = генералыНаличие.transform.GetChild(i).GetComponent<TownGenerals>();
-            tG.general = null;
-            tG.img.sprite = null;
-            tG.img.gameObject.SetActive(false);
-            tG.text.text = "";
-            tG.text.gameObject.SetActive(false);
-            tG.interactable = false;
-            слотыГенералов.Add(tG);
-        }
-        for (int i = 0; i < GameManager.instance.generals.Count; i++) //Заполнение
-        {
-            if (!GameManager.instance.generals[i].isDead)
-            {
-                слотыГенералов[i].general = GameManager.instance.generals[i];
-                слотыГенералов[i].img.sprite = слотыГенералов[i].general.img;
-                слотыГенералов[i].img.gameObject.SetActive(true);
-                слотыГенералов[i].text.text = слотыГенералов[i].general.PARAMS[GENERAL_LEVEL].ToString();
-                слотыГенералов[i].text.gameObject.SetActive(true);
-                слотыГенералов[i].interactable = true;
-            }
-        }
+        алтарь.SetActive(true);
+        altarTown.ОткрытьЮнитов();
     }
-    public void ЗаполненияНаличие()
-    {
-        слотыНаличиеЮнитов.Clear();
-        for (int i = 0; i < слотыНаличие.transform.childCount; i++)
-        {
-            слотыНаличиеЮнитов.Add(слотыНаличие.transform.GetChild(i).gameObject);
-        }
-        for (int i = 0; i < GameManager.instance.units.Count; i++)
-        {
-            слотыНаличиеЮнитов[i].GetComponent<Image>().sprite = GameManager.instance.units[i].img;
-            слотыНаличиеЮнитов[i].GetComponent<UnitBtn>().unit = GameManager.instance.units[i];
-            Button Кнопка = слотыНаличиеЮнитов[i].GetComponent<Button>();
-            Кнопка.interactable = true;
-            слотыНаличиеЮнитов[i].transform.GetChild(0).GetComponent<Text>().text = GameManager.instance.units[i].PARAMS[UNIT_COUNT].ToString();
-        }
-    }
-
-    public void ЗаполненияСоздание()
-    {
-        слотыСозданияЮнитов.Clear();
-        for (int i = 0; i < слотыСоздания.transform.childCount; i++)
-        {
-            слотыСозданияЮнитов.Add(слотыСоздания.transform.GetChild(i).gameObject);
-        }
-        for (int i = 0; i < GameManager.instance.units.Count; i++)
-        {
-            слотыСозданияЮнитов[i].GetComponent<Image>().sprite = GameManager.instance.units[i].img;
-            слотыСозданияЮнитов[i].GetComponent<UnitBtn>().unit = GameManager.instance.units[i];
-            Button Кнопка = слотыСозданияЮнитов[i].GetComponent<Button>();
-            Кнопка.interactable = true;
-        }
-    }
-    public void СоздатьЮнита()
-    {
-        Debug.Log("СоздатьЮнита");
-    }
-    public void ОткрытьЮнита(GameObject button)
-    {
-        картинкаЮнита.sprite = button.GetComponent<UnitBtn>().unit.img2;
-    }
-
-
-
-    //АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\//АРЕНА\\
-
     public void ОткрытьАрену()
     {
         арена.SetActive(true);
-
+        arenaTown.ToArena();
     }
-
-    public void ОткрытьГерой()
+    public void ОткрытьКазармы()
+    {
+        казармы.SetActive(true);
+        barracksTown.ОткрытьНаличие();
+    }
+    public void ОткрытьГероя()
     {
         герой.SetActive(true);
+        //heroTown.ОткрытьНаличие();
     }
-    public void Закрытие()
+    public void ОткрытьЛабараторию()
     {
-        казармы.SetActive(false);
-        герой.SetActive(false);
+        лабаратория.SetActive(true);
+        //labTown.ОткрытьНаличие();
     }
-    public void ToArena()
+    public void ОткрытьРынок()
     {
-        SceneManager.LoadScene("Arena");
+        рынок.SetActive(true);
+        //marketTown.ОткрытьНаличие();
+    }
+    public void ОткрытьКвесты()
+    {
+        квесты.SetActive(true);
+        questsBoardTown.ОткрытьЕжедневные();
+    }
+    public void Меню()
+    {
+        if (алтарь.activeSelf || арена.activeSelf || казармы.activeSelf || герой.activeSelf || лабаратория.activeSelf || рынок.activeSelf || квесты.activeSelf)
+        {
+            алтарь.SetActive(false);
+            арена.SetActive(false);
+            казармы.SetActive(false);
+            герой.SetActive(false);
+            лабаратория.SetActive(false);
+            рынок.SetActive(false);
+            квесты.SetActive(false);
+        }
+        else
+        {
+            SceneManager.LoadScene("Main");
+        }
     }
 
     public void ToGlobal()
     {
         SceneManager.LoadScene("GlobalMap");
-    }
-
-    public void ExitMenu()
-    {
-        if (казармы.activeSelf || герой.activeSelf || арена.activeSelf)
-        {
-            казармы.SetActive(false);
-            герой.SetActive(false);
-            арена.SetActive(false);
-        }
-        else
-            SceneManager.LoadScene("Main");
     }
 }
