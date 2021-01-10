@@ -4,21 +4,10 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    [Header("Герой")]
-    [SerializeField]
-    private GameObject герой;
-    [SerializeField]
-    private GameObject склад;
-    [SerializeField]
-    private GameObject достижения;
-    [SerializeField]
-    private GameObject арена;
-    [SerializeField]
-    private GameObject компания;
-    [SerializeField]
+    HeroTown heroTown;
+
     private GameObject эквип;
-    [SerializeField]
-    private GameObject закрытьЭквип;
+    private GameObject эквипЗакрыть;
     [SerializeField]
     private GameObject инфоПредмет;
     [SerializeField]
@@ -32,64 +21,13 @@ public class Inventory : MonoBehaviour
 
     private GameObject SelectedSlot;
 
-
-    private bool isArena = false;
-
-
+    
 
     private void Start()
     {
-        //   Заполнения();
-        арена.SetActive(false);
-        склад.SetActive(false);
-        достижения.SetActive(false);
-        герой.SetActive(true);
-        компания.SetActive(true);
-    }
-
-    public void ОткрытьГерой()
-    {
-        склад.SetActive(false);
-        достижения.SetActive(false);
-        герой.SetActive(true);
-
-    }
-    public void ОткрытьСклад()
-    {
-        герой.SetActive(false);
-        достижения.SetActive(false);
-        склад.SetActive(true);
-
-    }
-    public void ОткрытьДостижения()
-    {
-        герой.SetActive(false);
-        склад.SetActive(false);
-        достижения.SetActive(true);
-    }
-
-    public void АренаКомпания()
-    {
-        if (арена.activeSelf)
-        {
-            арена.SetActive(false);
-            isArena = false;
-            ЗакратьЭквип();
-            компания.SetActive(true);
-        }
-        else
-        {
-            компания.SetActive(false);
-            ЗакратьЭквип();
-            isArena = true;
-            арена.SetActive(true);
-        }
-    }
-
-    public void ЗакратьЭквип()
-    {
-        эквип.SetActive(false);
-        закрытьЭквип.SetActive(false);
+        heroTown = Camera.main.transform.GetComponent<HeroTown>();
+        эквип = heroTown.эквип;
+        эквипЗакрыть = heroTown.эквипЗакрыть;
     }
 
     public void ВыбратьСлот(BtnInvent btn)
@@ -97,47 +35,47 @@ public class Inventory : MonoBehaviour
         switch (btn.type)
         {
             case ItemSlotsType.head:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.tors:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.pants:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.bots:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.weapon0:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.weapon1:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.amulet:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.ring:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
             case ItemSlotsType.art:
-                эквип.SetActive(true);
+                heroTown.ОткрытьЭквип();
                 ЗаполнениеЭквип(btn.type);
                 SelectedSlot = btn.gameObject;
                 break;
@@ -146,7 +84,7 @@ public class Inventory : MonoBehaviour
     void ЗаполнениеЭквип(ItemSlotsType type)
     {
         List<Item> items = new List<Item>();
-        закрытьЭквип.SetActive(true);
+        эквипЗакрыть.SetActive(true);
         for (int i = 0; i < эквип.transform.childCount; i++) //Тут было какое-то говно с ячейкой одной!
         {
             Transform trans = эквип.transform.GetChild(i);
@@ -157,7 +95,7 @@ public class Inventory : MonoBehaviour
             btn.interactable = false;
             img.sprite = null;
         }
-        if (isArena)
+        if (heroTown.isArena)
         {
             if (GameManager.instance.itemsArena.Count > 0)
             {
@@ -241,7 +179,7 @@ public class Inventory : MonoBehaviour
         switch (type)
         {
             case ItemSlotsType.head:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaHead = item;
                 }
@@ -251,7 +189,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.tors:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaTors = item;
                 }
@@ -261,7 +199,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.pants:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaPants = item;
                 }
@@ -271,7 +209,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.bots:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaBots = item;
                 }
@@ -281,7 +219,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.weapon0:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaWeapon0 = item;
                 }
@@ -291,7 +229,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.weapon1:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaWeapon1 = item;
                 }
@@ -301,7 +239,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.amulet:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaAmulet = item;
                 }
@@ -311,7 +249,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.ring:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     if (slotNumber == 0)
                     {
@@ -335,7 +273,7 @@ public class Inventory : MonoBehaviour
                 }
                 break;
             case ItemSlotsType.art:
-                if (isArena)
+                if (heroTown.isArena)
                 {
                     Hero.arenaArt = item;
                 }

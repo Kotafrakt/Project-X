@@ -100,13 +100,13 @@ public class GameManager : MonoBehaviour
 
     public void FirstGame()
     {
-        resource[GOLD] = 0;
+        resource[GOLD] = 50;
         resource[WOOD] = 0;
         resource[ROCK] = 0;
         resource[IRON] = 0;
         resource[BONES] = 100;
         resource[SOULS] = 0;
-        resource[BODY] = 0;
+        resource[BODY] = 50;
         resource[REAL] = 50;
 
         resource[ARTIFACT_V0] = 1;           //Неизвестный Артефакт

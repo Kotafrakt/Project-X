@@ -37,7 +37,11 @@ public class Town : MonoBehaviour
     private GameObject квесты;
     QuestsBoardTown questsBoardTown;
 
-    
+    [SerializeField]
+    private GameObject испытания;
+    TrialsTown trialsTown;
+
+
 
     private void Start()
     {
@@ -48,6 +52,7 @@ public class Town : MonoBehaviour
         labTown = Camera.main.transform.GetComponent<LabTown>();
         marketTown = Camera.main.transform.GetComponent<MarketTown>();
         questsBoardTown = Camera.main.transform.GetComponent<QuestsBoardTown>();
+        trialsTown = Camera.main.transform.GetComponent<TrialsTown>();
     }
 
     public void ОткрытьАлтарь()
@@ -58,17 +63,17 @@ public class Town : MonoBehaviour
     public void ОткрытьАрену()
     {
         арена.SetActive(true);
-        arenaTown.ToArena();
+        arenaTown.ОткрытьАрену();
+    }
+    public void ОткрытьГероя()
+    {
+        герой.SetActive(true);
+        heroTown.ОткрытьГероя();
     }
     public void ОткрытьКазармы()
     {
         казармы.SetActive(true);
         barracksTown.ОткрытьНаличие();
-    }
-    public void ОткрытьГероя()
-    {
-        герой.SetActive(true);
-        //heroTown.ОткрытьНаличие();
     }
     public void ОткрытьЛабараторию()
     {
@@ -85,9 +90,14 @@ public class Town : MonoBehaviour
         квесты.SetActive(true);
         questsBoardTown.ОткрытьЕжедневные();
     }
+    public void ОткрытьИспытания()
+    {
+        испытания.SetActive(true);
+        trialsTown.ОткрытьИспытания();
+    }
     public void Меню()
     {
-        if (алтарь.activeSelf || арена.activeSelf || казармы.activeSelf || герой.activeSelf || лабаратория.activeSelf || рынок.activeSelf || квесты.activeSelf)
+        if (алтарь.activeSelf || арена.activeSelf || казармы.activeSelf || герой.activeSelf || лабаратория.activeSelf || рынок.activeSelf || квесты.activeSelf || испытания.activeSelf)
         {
             алтарь.SetActive(false);
             арена.SetActive(false);
@@ -96,6 +106,7 @@ public class Town : MonoBehaviour
             лабаратория.SetActive(false);
             рынок.SetActive(false);
             квесты.SetActive(false);
+            испытания.SetActive(false);
         }
         else
         {

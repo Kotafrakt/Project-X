@@ -14,8 +14,6 @@ public class BarracksTown : MonoBehaviour
     [SerializeField]
     private GameObject создать;
     [SerializeField]
-    private Scrollbar countUnit;
-    [SerializeField]
     private Image картинкаЮнита;
     [SerializeField]
     Button создатьЮнита;
@@ -30,6 +28,14 @@ public class BarracksTown : MonoBehaviour
     private Unit создающийся;
     [SerializeField]
     private GameObject ресурсы;
+    private bool canBuy = false;
+    private int maxCountBuy = 1;
+    private int currentCountUnit = 1;
+    private int oldVale = 1;
+    [SerializeField]
+    private Slider countUnit;
+    [SerializeField]
+    Text countUnitT;
 
 
     [Header("Наличие")]
@@ -174,9 +180,11 @@ public class BarracksTown : MonoBehaviour
 
     public void СоздатьЮнита()
     {
-        countUnit.value = 0;
+        //countUnit.minValue = 1;
+        //countUnitT.text = countUnit.value.ToString();
         картинкаСоздаваемого.sprite = создающийся.img2;
         картинкаСоздаваемого.gameObject.SetActive(true);
+        canBuy = false;
         ЗаполнениеРесурсов();
         создать.SetActive(true);
     }
@@ -199,19 +207,107 @@ public class BarracksTown : MonoBehaviour
                 ir.Add(ires);
             }                
         }
+        CheckAvaibelUnitCreate(ir, res);
         for (int i = 0; i < ir.Count; i++)
         {
             кнопкиРесурсов[i].img.sprite = ir[i].img;
-            кнопкиРесурсов[i].text.text = res.resource[ir[i].num].ToString();
+            кнопкиРесурсов[i].text.text = (res.resource[ir[i].num] * currentCountUnit).ToString();
+            if(GameManager.resource[ir[i].num] >= res.resource[ir[i].num])
+            {
+                canBuy = true;
+                кнопкиРесурсов[i].text.color = Colors.GreenColor;
+            }
+            else
+            {
+                кнопкиРесурсов[i].text.color = Colors.RedColor;
+                canBuy = false;
+            }
             кнопкиРесурсов[i].resource = ir[i].num;
             кнопкиРесурсов[i].count = res.resource[ir[i].num];
             кнопкиРесурсов[i].gameObject.SetActive(true);
         }
     }
 
-
-    public void ResInfo(int resource, int count)
+    public void ResInfo(int recource, int count)
     {
 
+    }
+
+    void CheckAvaibelUnitCreate(List<InfoResources> infoRes, Resource res)
+    {
+        List<int> avaibelC = new List<int>();
+        int count = 0;
+        for(int i = 0; i < infoRes.Count; i++)
+        {
+            int c = 0;
+            if (GameManager.resource[infoRes[i].num] > 0)
+            {
+                c = Mathf.FloorToInt(GameManager.resource[infoRes[i].num] / res.resource[infoRes[i].num]);
+            }
+            avaibelC.Add(c);
+        }
+        count = SortCount(avaibelC)[0];
+        if(count == 0)
+        {
+            maxCountBuy = 1;
+            countUnit.value = 1;
+            countUnit.maxValue = 1;
+        }
+        else
+        {
+            maxCountBuy = count;
+            countUnit.maxValue = maxCountBuy;
+            countUnit.value = 1;
+        }
+    }
+
+    List<int> SortCount(List<int> avaibelC)
+    {
+        int temp;
+        for (int i = 0; i < avaibelC.Count; i++)
+        {
+            for (int j = i + 1; j > avaibelC.Count; j++)
+            {
+                if (avaibelC[i] < avaibelC[j])
+                {
+                    temp = avaibelC[i];
+                    avaibelC[i] = avaibelC[j];
+                    avaibelC[j] = temp;
+                }
+            }
+        }
+        return avaibelC;
+    }
+
+    public void CreateUnits()
+    {
+        if(canBuy)
+        {
+
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        CheckSlider();
+    }
+
+    void CheckSlider()
+    {
+        float count = countUnit.value;
+        int countInt = Mathf.RoundToInt(count);
+        countUnit.value = countInt;
+        if (countInt > 0)
+        {
+            currentCountUnit = countInt;
+        }
+        else
+            currentCountUnit = 1;
+        if(oldVale != currentCountUnit)
+        {
+            oldVale = currentCountUnit;
+            ЗаполнениеРесурсов();
+        }
+        countUnitT.text = countInt.ToString();
     }
 }

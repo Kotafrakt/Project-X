@@ -7,7 +7,7 @@ public class PointAttack : MonoBehaviour
     public bool isSelected = false;
     public bool isEnemy = false;
     Image image;
-    ArenaTown arenaTown;
+    ArenaManager arenaManager;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class PointAttack : MonoBehaviour
         /*
         if(Hero.arenaHead != null)
             image.sprite = Hero.arenaHead.img; */
-        arenaTown = Camera.main.transform.GetComponent<ArenaTown>();
+        arenaManager = Camera.main.transform.GetComponent<ArenaManager>();
     }
 
     // Update is called once per frame
@@ -27,19 +27,19 @@ public class PointAttack : MonoBehaviour
 
     public void SelectPoint()
     {
-        if (!isSelected && !arenaTown.isEndurn)
+        if (!isSelected && !arenaManager.isEndurn)
         {
             if (isEnemy)
             {
                 image.color = Colors.RedColor;
                 isSelected = true;
-                arenaTown.SelectApEnemy(ap);
+                arenaManager.SelectApEnemy(ap);
             }
             else
             {
                 image.color = Colors.GreenColor;
                 isSelected = true;
-                arenaTown.SelectApHero(ap);
+                arenaManager.SelectApHero(ap);
             }
         }
     }

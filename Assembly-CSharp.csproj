@@ -100,6 +100,7 @@
     <Compile Include="Assets\_Scripts\Core\Resource.cs" />
     <Compile Include="Assets\_Scripts\Core\Tower.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\Altar\AltarTown.cs" />
+    <Compile Include="Assets\_Scripts\Core\Town\Arena\ArenaManager.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\Arena\ArenaTown.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\Arena\CreateHeroEnemy.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\Arena\HeroEnemy.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Assets\_Scripts\Core\Town\Market\MarketTown.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\QuestsBoard\QuestsBoardTown.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\Town.cs" />
+    <Compile Include="Assets\_Scripts\Core\Town\Trials\TrialsTown.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\ZoomPan.cs" />
     <Compile Include="Assets\_Scripts\Core\Unit.cs" />
     <Compile Include="Assets\_Scripts\Core\UnitType.cs" />
