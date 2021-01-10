@@ -67,8 +67,6 @@
     <Compile Include="Assets\_Scripts\Boom.cs" />
     <Compile Include="Assets\_Scripts\Buttons\GeneralBtn.cs" />
     <Compile Include="Assets\_Scripts\Buttons\SelectUnitButton.cs" />
-    <Compile Include="Assets\_Scripts\Buttons\TownGenerals.cs" />
-    <Compile Include="Assets\_Scripts\Buttons\TownUnits.cs" />
     <Compile Include="Assets\_Scripts\Colors.cs" />
     <Compile Include="Assets\_Scripts\Core\AvailableList.cs" />
     <Compile Include="Assets\_Scripts\Core\BlockPoint.cs" />
@@ -108,6 +106,10 @@
     <Compile Include="Assets\_Scripts\Core\Town\Arena\ItemsArena.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\Arena\PointAttack.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\Barracks\BarracksTown.cs" />
+    <Compile Include="Assets\_Scripts\Core\Town\Barracks\InfoResources.cs" />
+    <Compile Include="Assets\_Scripts\Core\Town\Barracks\NeedResources.cs" />
+    <Compile Include="Assets\_Scripts\Core\Town\Barracks\TownGenerals.cs" />
+    <Compile Include="Assets\_Scripts\Core\Town\Barracks\TownUnits.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\BtnEcuip.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\BtnInvent.cs" />
     <Compile Include="Assets\_Scripts\Core\Town\GlobalMap.cs" />

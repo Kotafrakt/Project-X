@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     //    public List<PlayEnemy> EnemyList = new List<PlayEnemy>();
     public volatile Dictionary<UnitType, bool> runingUnit = new Dictionary<UnitType, bool>();
     Text mana;
+    bool isFin = false;
 
     [HideInInspector]
     public List<PlayUnit> UnitList = new List<PlayUnit>();
@@ -82,6 +83,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel(string name, Transform[] wayPU0, Transform[] wayPU1, Transform[] wayPU2, Transform finish, GameObject[] sp, int needFinished, Text mana, SpawnBtn[] spBtn)
     {
+        isFin = false;
         Hero.PARAMS[HERO_MANA_CURRENT] = Hero.PARAMS[HERO_MANA_MAX];
         foreach(SpawnBtn sb in spBtn)
         {
@@ -218,7 +220,7 @@ public class LevelManager : MonoBehaviour
                 yield break;
             }
             yield return new WaitForSeconds(spawnDelay);
-            StartCoroutine(Spawn(unit, spNum, wp));
+            if (!isFin) StartCoroutine(Spawn(unit, spNum, wp));
         }
     }
 
@@ -244,6 +246,7 @@ public class LevelManager : MonoBehaviour
 
     public void Finished(Unit unit)
     {
+        isFin = true;
         countFinished++;
         if (countFinished >= needFinished)
         {
@@ -257,6 +260,7 @@ public class LevelManager : MonoBehaviour
 
     public void Fin()
     {
+        isFin = true;
         panel.SetActive(false);
         GameManager.instance.HeroPos = levelName;
         GameManager.instance.locations[levelName] = 2;
@@ -276,6 +280,14 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene("GlobalMap");
         else
             SceneManager.LoadScene(levelName + "B");
+    }
+    public void Lose()
+    {
+        isFin = true;
+        GameManager.instance.HeroPos = levelName;
+        Hero.PARAMS[HERO_MANA_CURRENT] = Hero.PARAMS[HERO_MANA_MAX];
+        Time.timeScale = 1;
+        SceneManager.LoadScene("GlobalMap");
     }
 
     void Returningunits()

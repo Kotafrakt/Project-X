@@ -247,6 +247,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d36ee4dc4066c3640a9be27426ba69ca, type: 3}
   imgArtArena:
   - {fileID: 21300000, guid: 697277a00ec04594988fac1a47885c2f, type: 3}
+  imgRes:
+  - {fileID: 21300000, guid: 367a54c8523047f408dd708faf412907, type: 3}
+  - {fileID: 21300000, guid: ec226dcead47abe46ace8f9264946cd3, type: 3}
+  - {fileID: 21300000, guid: 6de8c75f59ec5de41b71541c6711c852, type: 3}
+  - {fileID: 21300000, guid: 800caf3129a409645b750716a102fe12, type: 3}
 --- !u!4 &62078937
 Transform:
   m_ObjectHideFlags: 0

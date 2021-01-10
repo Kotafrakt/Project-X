@@ -18,11 +18,19 @@ public class BarracksTown : MonoBehaviour
     [SerializeField]
     private Image картинкаЮнита;
     [SerializeField]
+    Button создатьЮнита;
+    [SerializeField]
     private ToggleGroup тоглы;
     [SerializeField]
     Text имя;
     [SerializeField]
     Text описание;
+    [SerializeField]
+    private Image картинкаСоздаваемого;
+    private Unit создающийся;
+    [SerializeField]
+    private GameObject ресурсы;
+
 
     [Header("Наличие")]
     [SerializeField]
@@ -42,6 +50,7 @@ public class BarracksTown : MonoBehaviour
     private List<TownUnits> слотыСозданияЮнитов = new List<TownUnits>();
     private List<TownUnits> слотыНаличиеЮнитов = new List<TownUnits>();
     private List<TownGenerals> слотыГенералов = new List<TownGenerals>();
+    private List<NeedResources> кнопкиРесурсов = new List<NeedResources>();
 
     public void ОткрытьСоздание()
     {
@@ -49,6 +58,7 @@ public class BarracksTown : MonoBehaviour
         наличие.SetActive(false);
         генералы.SetActive(false);
         создать.SetActive(false);
+        if (картинкаЮнита == null) создатьЮнита.interactable = false;
         создание.SetActive(true);
     }
     public void ОткрытьНаличие()
@@ -154,15 +164,35 @@ public class BarracksTown : MonoBehaviour
 
     public void ВыборЮнитаДляСоздания(TownUnits townUnit)
     {
+        создающийся = townUnit.unit;
         картинкаЮнита.sprite = townUnit.unit.img2;
         картинкаЮнита.gameObject.SetActive(true);
         имя.text = GameText.GetUnitName(townUnit.unit.type);
         описание.text = GameText.GetUnitDescription(townUnit.unit.type);
+        создатьЮнита.interactable = true;
     }
 
     public void СоздатьЮнита()
     {
         countUnit.value = 0;
+        картинкаСоздаваемого.sprite = создающийся.img2;
+        картинкаСоздаваемого.gameObject.SetActive(true);
         создать.SetActive(true);
+    }
+
+    public void ЗаполнениеРесурсов()
+    {
+        for (int i = 0; i < ресурсы.transform.childCount; i++)
+        {
+            GameObject gO = ресурсы.transform.GetChild(i).gameObject;
+            gO.SetActive(false);
+            кнопкиРесурсов.Add(gO.GetComponent<NeedResources>());
+        }
+    }
+
+
+    public void ResInfo(int resource, int count)
+    {
+
     }
 }

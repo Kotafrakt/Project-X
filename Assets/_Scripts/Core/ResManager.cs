@@ -59,6 +59,9 @@ public class ResManager : MonoBehaviour
     public Sprite[] imgRingArena;
     public Sprite[] imgArtArena;
 
+    [Header("Картинки Ресурсов")]
+    public Sprite[] imgRes;
+
     private void Awake()
     {
         if (instance == null)

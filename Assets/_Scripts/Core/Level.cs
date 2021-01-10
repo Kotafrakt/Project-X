@@ -182,7 +182,7 @@ public class Level : MonoBehaviour
     {
         Time.timeScale = 1;
         LevelManager.instance.UnitList.Clear();
-        SceneManager.LoadScene("GlobalMap");
+        LevelManager.instance.Lose();
     }
     void Настройки()
     {
@@ -191,6 +191,7 @@ public class Level : MonoBehaviour
     void Выход()
     {
         LevelManager.instance.UnitList.Clear();
+        LevelManager.instance.Lose();
         Application.Quit();
     }
 
@@ -317,6 +318,7 @@ public class Level : MonoBehaviour
     }
     void ToGlobal()
     {
+        
         SceneManager.LoadScene("GlobalMap");
     }
 
