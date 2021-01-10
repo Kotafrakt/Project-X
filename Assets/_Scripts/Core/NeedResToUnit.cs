@@ -1,7 +1,7 @@
 ﻿using static Defines;
 public static class NeedResToUnit
 {
-   public static Resource Unit(UnitType type)
+   public static Resource GetRes(UnitType type)
     {
         Resource res = new Resource();
          switch (type)

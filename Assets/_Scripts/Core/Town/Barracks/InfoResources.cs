@@ -7,6 +7,7 @@ public  class InfoResources
 {
     public Sprite img;
     public string name;
+    public int num;
 }
 public static class GetInfoResources
 {
@@ -60,6 +61,7 @@ public static class GetInfoResources
                 }
                 break;
         }
+        res.num = resNum;
         return res;
     }
 }

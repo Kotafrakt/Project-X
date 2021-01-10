@@ -6,8 +6,8 @@ using static Defines;
 public class NeedResources : Button
 {
     BarracksTown barracksTown;
-    int resource;
-    int count;
+    public int resource;
+    public int count;
     public Text text;
     public Image img;
 

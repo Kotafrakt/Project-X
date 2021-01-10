@@ -8,7 +8,7 @@ public static class AvailableList
     {
         //Грейд 0
         availableUnit.Add(UnitType.SkeletonV0, true);
-        availableUnit.Add(UnitType.ZombieV0, false);
+        availableUnit.Add(UnitType.ZombieV0, true);
 
         //Грейд 1
         availableUnit.Add(UnitType.SkeletonV1, false);

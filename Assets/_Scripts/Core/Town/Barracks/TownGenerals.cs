@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class TownGenerals : Button
 {
-    Town town;
+    BarracksTown barracksTown;
     public General general;
     public GeneralBtn gBtn;
     public Text text;
@@ -17,7 +17,7 @@ public class TownGenerals : Button
 
     protected override void Start()
     {
-        town = Camera.main.transform.GetComponent<Town>();
+        barracksTown = Camera.main.transform.GetComponent<BarracksTown>();
         text = transform.GetChild(1).GetComponent<Text>();
         img = transform.GetChild(0).GetComponent<Image>();
     }

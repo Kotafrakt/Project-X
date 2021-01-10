@@ -17,8 +17,8 @@ public class TownUnits : Button
     protected override void Start()
     {
         barracksTown = Camera.main.transform.GetComponent<BarracksTown>();
-        text = transform.GetChild(1).GetComponent<Text>();
         img = transform.GetChild(0).GetComponent<Image>();
+        text = transform.GetChild(1).GetComponent<Text>();        
     }
     private void FixedUpdate()
     {

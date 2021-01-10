@@ -177,6 +177,7 @@ public class BarracksTown : MonoBehaviour
         countUnit.value = 0;
         картинкаСоздаваемого.sprite = создающийся.img2;
         картинкаСоздаваемого.gameObject.SetActive(true);
+        ЗаполнениеРесурсов();
         создать.SetActive(true);
     }
 
@@ -187,6 +188,24 @@ public class BarracksTown : MonoBehaviour
             GameObject gO = ресурсы.transform.GetChild(i).gameObject;
             gO.SetActive(false);
             кнопкиРесурсов.Add(gO.GetComponent<NeedResources>());
+        }
+        Resource res = NeedResToUnit.GetRes(создающийся.type);
+        List<InfoResources> ir = new List<InfoResources>();
+        for (int i = 0; i < res.resource.Length; i++)
+        {
+            if (res.resource[i] != 0)
+            {
+                InfoResources ires = GetInfoResources.GetInfo(i);
+                ir.Add(ires);
+            }                
+        }
+        for (int i = 0; i < ir.Count; i++)
+        {
+            кнопкиРесурсов[i].img.sprite = ir[i].img;
+            кнопкиРесурсов[i].text.text = res.resource[ir[i].num].ToString();
+            кнопкиРесурсов[i].resource = ir[i].num;
+            кнопкиРесурсов[i].count = res.resource[ir[i].num];
+            кнопкиРесурсов[i].gameObject.SetActive(true);
         }
     }
 
