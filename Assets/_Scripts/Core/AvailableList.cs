@@ -16,7 +16,7 @@ public static class AvailableList
 
         //Грейд 2
         availableUnit.Add(UnitType.SkeletonV2, true);
-        availableUnit.Add(UnitType.ZombieV2, false);
+        availableUnit.Add(UnitType.ZombieV2, true);
     }
 
 }

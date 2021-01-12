@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Defines;
 
+public class RNCU
+{
+    public int num;
+    public int count;
+}
+
 public class BarracksTown : MonoBehaviour
 {
     [Header("Создание")]
@@ -21,6 +27,8 @@ public class BarracksTown : MonoBehaviour
     private ToggleGroup тоглы;
     [SerializeField]
     Text имя;
+    [SerializeField]
+    Text имяСоздающегося;
     [SerializeField]
     Text описание;
     [SerializeField]
@@ -43,7 +51,16 @@ public class BarracksTown : MonoBehaviour
     private GameObject наличие;
     [SerializeField]
     private GameObject слотыНаличие;
-       
+    [SerializeField]
+    private Image картинкаЮнитаНаличие;
+    [SerializeField]
+    Button upgradeBtn;
+    [SerializeField]
+    private GameObject апгрейд;
+
+    [Header("Улучшение")]
+    UnitType apgradeType;
+
     [Header("Генералы")]
     [SerializeField]
     private GameObject генералы;
@@ -57,6 +74,7 @@ public class BarracksTown : MonoBehaviour
     private List<TownUnits> слотыНаличиеЮнитов = new List<TownUnits>();
     private List<TownGenerals> слотыГенералов = new List<TownGenerals>();
     private List<NeedResources> кнопкиРесурсов = new List<NeedResources>();
+    private List<RNCU> rNCU = new List<RNCU>();
 
     public void ОткрытьСоздание()
     {
@@ -110,6 +128,23 @@ public class BarracksTown : MonoBehaviour
             }
         }
     }
+
+    public void ИнфоЮнитаНалиие(TownUnits tUnit)
+    {
+        картинкаЮнитаНаличие.sprite = tUnit.unit.img2;
+        UnitType type = CheckUpgrade.CheckUnit(tUnit.unit.type);
+        if (type == UnitType.None)
+        {
+            upgradeBtn.interactable = false;
+        }
+        else
+        {
+            upgradeBtn.interactable = true;
+            apgradeType = type;
+        }
+            
+    }
+
     public void ЗаполненияСоздание()
     {
         for (int i = 0; i < слотыСоздания.transform.childCount; i++)
@@ -133,12 +168,13 @@ public class BarracksTown : MonoBehaviour
         }
         for (int i = 0; i < tempUnit.Count; i++) //Заполнение
         {
-                слотыСозданияЮнитов[i].unit = tempUnit[i];
-                слотыСозданияЮнитов[i].img.sprite = tempUnit[i].img;
-                слотыСозданияЮнитов[i].img.gameObject.SetActive(true);
-                слотыСозданияЮнитов[i].text.text = GameText.GetUnitName(tempUnit[i].type);
-                слотыСозданияЮнитов[i].text.gameObject.SetActive(true);
-                слотыСозданияЮнитов[i].interactable = true;
+            слотыСозданияЮнитов[i].unit = tempUnit[i];
+            слотыСозданияЮнитов[i].img.sprite = tempUnit[i].img;
+            слотыСозданияЮнитов[i].img.gameObject.SetActive(true);
+            слотыСозданияЮнитов[i].text.text = GameText.GetUnitName(tempUnit[i].type);
+            слотыСозданияЮнитов[i].text.gameObject.SetActive(true);
+            слотыСозданияЮнитов[i].interactable = true;
+            слотыСозданияЮнитов[i].isCreate = true;
         }
     }
     public void ЗаполнениеГенералы()
@@ -186,11 +222,13 @@ public class BarracksTown : MonoBehaviour
         картинкаСоздаваемого.gameObject.SetActive(true);
         canBuy = false;
         ЗаполнениеРесурсов();
+        имяСоздающегося.text = GameText.GetUnitName(создающийся.type);
         создать.SetActive(true);
     }
 
     public void ЗаполнениеРесурсов()
     {
+        rNCU.Clear();
         for (int i = 0; i < ресурсы.transform.childCount; i++)
         {
             GameObject gO = ресурсы.transform.GetChild(i).gameObject;
@@ -205,6 +243,10 @@ public class BarracksTown : MonoBehaviour
             {
                 InfoResources ires = GetInfoResources.GetInfo(i);
                 ir.Add(ires);
+                RNCU temp = new RNCU();
+                temp.num = i;
+                temp.count = res.resource[i] * currentCountUnit;
+                rNCU.Add(temp);
             }                
         }
         CheckAvaibelUnitCreate(ir, res);
@@ -283,7 +325,14 @@ public class BarracksTown : MonoBehaviour
     {
         if(canBuy)
         {
-
+            for(int i = 0; i < rNCU.Count; i++)
+            {
+                GameManager.resource[rNCU[i].num] -= rNCU[i].count;
+            }
+            создающийся.PARAMS[UNIT_COUNT] += currentCountUnit;
+            rNCU.Clear();
+            currentCountUnit = 1;
+            ЗаполнениеРесурсов();
         }
     }
 
@@ -309,5 +358,13 @@ public class BarracksTown : MonoBehaviour
             ЗаполнениеРесурсов();
         }
         countUnitT.text = countInt.ToString();
+    }
+    public void ОткрытьАпгрейд()
+    {
+        апгрейд.SetActive(true);
+    }
+    public void ЗакрытьАпгрейд()
+    {
+        апгрейд.SetActive(false);
     }
 }

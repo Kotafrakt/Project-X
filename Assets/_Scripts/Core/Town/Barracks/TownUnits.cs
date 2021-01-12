@@ -8,6 +8,7 @@ public class TownUnits : Button
     public Unit unit;
     public Text text;
     public Image img;
+    public bool isCreate = false;
     bool isDown = false;
     bool isShowInfo = false;
     float time = 0;
@@ -52,7 +53,14 @@ public class TownUnits : Button
             {
                 time = 0;
                 isShowInfo = false;
-                barracksTown.ВыборЮнитаДляСоздания(this);
+                if (isCreate)
+                {
+                    barracksTown.ВыборЮнитаДляСоздания(this);
+                }
+                else
+                {
+                    barracksTown.ИнфоЮнитаНалиие(this);
+                }
             }
             isDown = false;
         }

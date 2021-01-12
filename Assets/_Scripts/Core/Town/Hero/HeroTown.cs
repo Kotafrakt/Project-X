@@ -15,6 +15,7 @@ public class HeroTown : MonoBehaviour
     public bool isArena = false;
     public GameObject эквип;
     public GameObject эквипЗакрыть;
+    public GameObject инфоПредмет;
 
     [Header("Склад")]
     [SerializeField]
@@ -32,6 +33,7 @@ public class HeroTown : MonoBehaviour
     {
         склад.SetActive(false);
         достижения.SetActive(false);
+        инфоПредмет.SetActive(false);
         герой.SetActive(true);
     }
     public void ОткрытьСклад()
@@ -72,5 +74,9 @@ public class HeroTown : MonoBehaviour
     public void ОткрытьЭквип()
     {
         эквип.SetActive(true);
+    }
+    public void ЗакрытьИнфоПредмет()
+    {
+        инфоПредмет.SetActive(false);
     }
 }

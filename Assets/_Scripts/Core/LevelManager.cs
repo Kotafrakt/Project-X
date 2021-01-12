@@ -276,6 +276,12 @@ public class LevelManager : MonoBehaviour
                 isRoad = false;
                 break;
         }
+        buttonsGeneral.Clear();
+        buttonsUnit.Clear();
+        finishedUnits.Clear();
+        sPointBtnList.Clear();
+        UnitList.Clear();
+
         if (isRoad)
             SceneManager.LoadScene("GlobalMap");
         else
@@ -287,7 +293,12 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.HeroPos = levelName;
         Hero.PARAMS[HERO_MANA_CURRENT] = Hero.PARAMS[HERO_MANA_MAX];
         Time.timeScale = 1;
-        SceneManager.LoadScene("GlobalMap");
+        buttonsGeneral.Clear();
+        buttonsUnit.Clear();
+        finishedUnits.Clear();
+        sPointBtnList.Clear();
+        UnitList.Clear();
+        SceneManager.LoadScene("GlobalMap");        
     }
 
     void Returningunits()

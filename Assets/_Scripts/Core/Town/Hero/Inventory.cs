@@ -8,7 +8,6 @@ public class Inventory : MonoBehaviour
 
     private GameObject эквип;
     private GameObject эквипЗакрыть;
-    [SerializeField]
     private GameObject инфоПредмет;
     [SerializeField]
     private GameObject параметры;
@@ -28,6 +27,7 @@ public class Inventory : MonoBehaviour
         heroTown = Camera.main.transform.GetComponent<HeroTown>();
         эквип = heroTown.эквип;
         эквипЗакрыть = heroTown.эквипЗакрыть;
+        инфоПредмет = heroTown.инфоПредмет;
     }
 
     public void ВыбратьСлот(BtnInvent btn)
