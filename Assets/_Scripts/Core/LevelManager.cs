@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
     private GameObject[] spawnPoint;
     private int needFinished;
     private int countFinished;
+    private Level level;
 
     GameObject panel;
 
@@ -81,8 +82,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void StartLevel(string name, Transform[] wayPU0, Transform[] wayPU1, Transform[] wayPU2, Transform finish, GameObject[] sp, int needFinished, Text mana, SpawnBtn[] spBtn)
+    public void StartLevel(string name, Transform[] wayPU0, Transform[] wayPU1, Transform[] wayPU2, Transform finish, GameObject[] sp, int needFinished, Text mana, SpawnBtn[] spBtn, Level level)
     {
+        this.level = level;
         isFin = false;
         Hero.PARAMS[HERO_MANA_CURRENT] = Hero.PARAMS[HERO_MANA_MAX];
         foreach(SpawnBtn sb in spBtn)
@@ -253,20 +255,18 @@ public class LevelManager : MonoBehaviour
             Time.timeScale = 0;
             countFinished = 0;
             Returningunits();
-            panel = Camera.main.transform.GetComponent<Level>().finished;
-            panel.SetActive(true);
+            Fin();
         }
     }
 
     public void Fin()
     {
         isFin = true;
-        panel.SetActive(false);
         GameManager.instance.HeroPos = levelName;
         GameManager.instance.locations[levelName] = 2;
         Hero.PARAMS[HERO_MANA_CURRENT] = Hero.PARAMS[HERO_MANA_MAX];
         bool isRoad = true;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         switch (levelName[0])
         {
             case 'V':
@@ -281,11 +281,17 @@ public class LevelManager : MonoBehaviour
         finishedUnits.Clear();
         sPointBtnList.Clear();
         UnitList.Clear();
-
+        level.isWinner = true;
         if (isRoad)
-            SceneManager.LoadScene("GlobalMap");
+        {
+            level.isRoad = true;
+            level.LevelBossResult();
+        }            
         else
-            SceneManager.LoadScene(levelName + "B");
+        {
+            level.isRoad = false;
+            level.LevelBossResult();
+        }            
     }
     public void Lose()
     {
@@ -298,7 +304,9 @@ public class LevelManager : MonoBehaviour
         finishedUnits.Clear();
         sPointBtnList.Clear();
         UnitList.Clear();
-        SceneManager.LoadScene("GlobalMap");        
+        level.isRoad = false;
+        level.isWinner = false;
+        level.LevelBossResult();
     }
 
     void Returningunits()
@@ -327,5 +335,5 @@ public class LevelManager : MonoBehaviour
             }
         }
         UnitList.Clear();
-    }
+    }       
 }

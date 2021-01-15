@@ -302,9 +302,9 @@ public static class Defines
     public const int WOOD = 1;               //Дерево
     public const int ROCK = 2;               //Камень
     public const int IRON = 3;               //Железо
-    public const int BONES = 4;              //Плоть
-    public const int SOULS = 5;              //Души
-    public const int BODY = 6;               //Живое мясо/Люди
+    public const int BONES = 4;              //Кости
+    public const int BODY = 5;               //Плоть
+    public const int SOULS = 6;              //Души
     public const int REAL = 7;               //Премиум валюта
 
     //Целые предметы

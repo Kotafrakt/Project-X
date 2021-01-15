@@ -219,7 +219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: V0
-  needFinished: 0
+  needFinished: 1
+  isWinner: 0
+  isRoad: 0
   spawnPoint:
   - {fileID: 1902238347}
   spawnButtons:
@@ -410,6 +412,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651064841718316190, guid: bac55a00542e1ba469f266af5f5c5202,
+        type: 3}
+      propertyPath: hp
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651064841718316190, guid: bac55a00542e1ba469f266af5f5c5202,
+        type: 3}
+      propertyPath: currentHp
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bac55a00542e1ba469f266af5f5c5202, type: 3}
@@ -1112,6 +1124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRadius
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020322853907337568, guid: ff2bfa05e45a1a74bad8841ae025c7df,
+        type: 3}
+      propertyPath: timeBetWeenAttacks
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4914534250389608692, guid: ff2bfa05e45a1a74bad8841ae025c7df,
         type: 3}
@@ -11829,6 +11846,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRadius
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020322853907337568, guid: ff2bfa05e45a1a74bad8841ae025c7df,
+        type: 3}
+      propertyPath: timeBetWeenAttacks
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4914534250389608692, guid: ff2bfa05e45a1a74bad8841ae025c7df,
         type: 3}

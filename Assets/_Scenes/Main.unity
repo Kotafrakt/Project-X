@@ -172,6 +172,7 @@ MonoBehaviour:
     type: 3}
   DamageText: {fileID: 698357633832218963, guid: dc54f400dd6054945b415138b1b5c2d9,
     type: 3}
+  message: {fileID: 3318557794584871302, guid: 11b7b55ba346e914db9f3f220bd2c0e0, type: 3}
   units:
   - {fileID: 982086990084979427, guid: 4649ce436770ae94e858e762f529edac, type: 3}
   - {fileID: 982086990084979427, guid: 4649ce436770ae94e858e762f529edac, type: 3}
@@ -356,6 +357,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ec226dcead47abe46ace8f9264946cd3, type: 3}
   - {fileID: 21300000, guid: 6de8c75f59ec5de41b71541c6711c852, type: 3}
   - {fileID: 21300000, guid: 800caf3129a409645b750716a102fe12, type: 3}
+  - {fileID: 21300000, guid: d268467b9c3aeb345b2bdf8ebf91a5f5, type: 3}
+  - {fileID: 21300000, guid: 62c72bc67dcb09744919cd234b9d94e7, type: 3}
+  - {fileID: 21300000, guid: 4c8eb15af947399409b67aad2de116a9, type: 3}
+  - {fileID: 21300000, guid: 27c72a08e12ccf64e9c8ddd2ce432f78, type: 3}
 --- !u!4 &62078937
 Transform:
   m_ObjectHideFlags: 0

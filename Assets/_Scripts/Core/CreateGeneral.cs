@@ -36,6 +36,12 @@ public static class CreateGeneral
         general.PARAMS[GENERAL_INITIATIVE] = 0 + general.PARAMS[GENERAL_INTELLECT] * 5;                                                              //Инициатива
         general.PARAMS[GENERAL_PARRY] = 0 + general.PARAMS[GENERAL_AGILITY] / 5;                                                                   //Парирование удара/отражение
 
+        general.skill0 = SkillType.skill0;
+        general.skill0 = SkillType.skill1;
+        general.skill0 = SkillType.skill2;
+
+        general.skillB= SkillTypeBonus.skillB0;
+
         //Боевые параметры(Текущий)
         general.PARAMS[GENERAL_HP_CURRENT] = general.PARAMS[GENERAL_HP];
         general.PARAMS[GENERAL_MANA_CURRENT] = general.PARAMS[GENERAL_MANA];

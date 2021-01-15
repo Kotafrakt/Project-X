@@ -18,6 +18,7 @@ public class BlockPoint : MonoBehaviour
         if (currentHp <= 0)
         {
             isDead = true;
+            Destroy(gameObject, 0.1f);
         }
     }
 }

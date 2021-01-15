@@ -181,6 +181,8 @@ public class GameManager : MonoBehaviour
         generals.Add(CreateGeneral.GenarateGeneral());
         generals.Add(CreateGeneral.GenarateGeneral());
         generals.Add(CreateGeneral.GenarateGeneral());
+        generals.Add(CreateGeneral.GenarateGeneral());
+        generals[0].PARAMS[GENERAL_CRIT_CHANGE_CURRENT] = 80;
         CleanMap();
         AvailableList.StartDictionary();
     }

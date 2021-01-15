@@ -5,12 +5,16 @@ using UnityEngine.UI;
 using static Defines;
 
 
-public class Level : MonoBehaviour
+public class Level : MonoBehaviour, IMessage
 {
     [SerializeField]
     private string levelName;
     [SerializeField]
     private int needFinished;
+    [HideInInspector]
+    public bool isWinner = false;
+    [HideInInspector]
+    public bool isRoad;
 
     public GameObject[] spawnPoint;
     public SpawnBtn[] spawnButtons;
@@ -19,7 +23,7 @@ public class Level : MonoBehaviour
     public Transform[] wayPointsUnit2;
     public Transform finish;
     public Transform canvas;
-    
+    GameObject levelBossResult;
 
     public GameObject finished;
     GameObject playPanelUp;
@@ -56,6 +60,10 @@ public class Level : MonoBehaviour
     Transform selectedUnitPanel;
     Transform avableUnitPanel;
 
+    GameObject messagePanel;
+    Text messageText;
+    Button messageButton;
+
     private GameObject buttonHero;
     private List<GameObject> buttonsGeneral = new List<GameObject>();
     private List<GameObject> buttonsUnit = new List<GameObject>();
@@ -70,7 +78,7 @@ public class Level : MonoBehaviour
         CreatePanelStartLevel();
         СоздатьЛевелМеню();
         CreateFinished();
-        LevelManager.instance.StartLevel(levelName, wayPointsUnit0, wayPointsUnit1, wayPointsUnit2, finish, spawnPoint, needFinished, mana, spawnButtons);
+        LevelManager.instance.StartLevel(levelName, wayPointsUnit0, wayPointsUnit1, wayPointsUnit2, finish, spawnPoint, needFinished, mana, spawnButtons, this);
     }
 
     void Update()
@@ -325,5 +333,92 @@ public class Level : MonoBehaviour
     public void SetSpawnPoint(SpawnBtn spoint)
     {
         LevelManager.instance.SetSpawnPoint(spoint);
+    }
+
+    public void LevelBossResult()
+    {
+        levelBossResult = Instantiate(ResManager.instance.levelBossResult, canvas);
+        Button принять = levelBossResult.transform.GetChild(0).GetComponent<Button>();
+        принять.onClick.AddListener(delegate { Принять(); });
+        Text resultText = levelBossResult.transform.GetChild(1).GetComponent<Text>();
+        Transform trophysPanel = levelBossResult.transform.GetChild(2);
+        List<Transform> trophys = new List<Transform>();
+        for (int i = 0; i < trophysPanel.childCount; i++)
+        {
+            trophys.Add(trophysPanel.GetChild(i));
+            trophys[i].gameObject.SetActive(false);
+        }
+        if (isWinner)
+        {
+            resultText.text = GameText.VictoryText();
+            List<TrophyRes> tRes = Trophy.GetRes(levelName);
+            Debug.Log("tResCount: " + tRes.Count);
+            List<TrophyRes> tResSort = new List<TrophyRes>();
+            for (int i = 0; i < tRes.Count; i++)
+            {
+                if (tRes[i].count > 0)
+                {
+                    tResSort.Add(tRes[i]);
+                }
+            }
+            Debug.Log("tResSortCount: " + tResSort.Count);
+            for (int i = 0; i < tResSort.Count; i++)
+            {
+                InfoResources res = GetInfoResources.GetInfo(tResSort[i].num);
+                trophys[i].GetChild(0).GetComponent<Image>().sprite = res.img;
+                trophys[i].GetChild(1).GetComponent<Text>().text = tResSort[i].count.ToString();
+                GameManager.resource[tResSort[i].num] += tResSort[i].count;
+                trophys[i].transform.GetComponent<ResBtn>().Name = res.name;
+                trophys[i].transform.GetComponent<ResBtn>().message = this;
+                trophys[i].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            resultText.text = GameText.LoseText();
+        }            
+    }
+
+    void Принять()
+    {
+        Time.timeScale = 1f;
+        if(isRoad)
+        {
+            SceneManager.LoadScene("GlobalMap");
+        }
+        else
+        {
+            if (isWinner) SceneManager.LoadScene(levelName + "B");
+            else SceneManager.LoadScene("GlobalMap");
+        }        
+    }
+
+    void CreateMessagePanel()
+    {
+        messagePanel = Instantiate(ResManager.instance.message, canvas);
+        messageText = messagePanel.transform.GetChild(0).transform.GetComponent<Text>();
+        messageButton = messagePanel.transform.GetChild(1).transform.GetComponent<Button>();
+        messageButton.onClick.AddListener(delegate { CloseMessage(); });
+        messagePanel.SetActive(false);
+    }
+
+    void CloseMessage()
+    {
+        messagePanel.SetActive(false);
+    }
+
+    public void OpenMessage(string text)
+    {
+        messageText.text = text;
+        messagePanel.SetActive(true);
+    }
+
+    public void Send(string s)
+    {
+        if (messagePanel == null)
+        {
+            CreateMessagePanel();
+        }
+        OpenMessage(s);
     }
 }

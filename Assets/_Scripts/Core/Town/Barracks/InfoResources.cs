@@ -60,6 +60,50 @@ public static class GetInfoResources
                     res.name = "Wood";
                 }
                 break;
+            case IRON:
+                res.img = ResManager.instance.imgRes[6];
+                if (GameManager.instance.isRussian)
+                {
+                    res.name = "Железо";
+                }
+                else
+                {
+                    res.name = "Iron";
+                }
+                break;
+            case SOULS:
+                res.img = ResManager.instance.imgRes[5];
+                if (GameManager.instance.isRussian)
+                {
+                    res.name = "Души";
+                }
+                else
+                {
+                    res.name = "Souls";
+                }
+                break;
+            case REAL:
+                res.img = ResManager.instance.imgRes[4];
+                if (GameManager.instance.isRussian)
+                {
+                    res.name = "Кристаллы";
+                }
+                else
+                {
+                    res.name = "Real";
+                }
+                break;
+            default:
+                res.img = ResManager.instance.imgRes[7];
+                if (GameManager.instance.isRussian)
+                {
+                    res.name = "Хрень";
+                }
+                else
+                {
+                    res.name = "Gadget";
+                }
+                break;
         }
         res.num = resNum;
         return res;

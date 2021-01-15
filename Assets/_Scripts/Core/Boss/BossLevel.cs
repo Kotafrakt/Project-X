@@ -3,8 +3,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Defines;
+
+public interface IMessage
+{
+    void Send(string s);
+}
+
 ///Пошаговый бой
-public class BossLevel : MonoBehaviour
+public class BossLevel : MonoBehaviour, IMessage
 {
     [SerializeField]
     string levelName;
@@ -51,17 +57,24 @@ public class BossLevel : MonoBehaviour
     GeneralBtn selectedGeneral;
     Text инфоОкно0;
     Text инфоОкно1;
+    Text resultText;
+    Transform trophysPanel;
+    bool isWinner = false;
+
+    GameObject messagePanel;
+    Text messageText;
+    Button messageButton;
 
     public List<TurnUnit> units = new List<TurnUnit>();
     public List<TurnEnemy> enemyes = new List<TurnEnemy>();
     public List<TurnUnit> unitsCurrent = new List<TurnUnit>();
     public List<TurnEnemy> enemyesCurrent = new List<TurnEnemy>();
-
+    public List<Transform> trophys = new List<Transform>();
 
     void Start()
     {
         CreatePanelBossLevel();
-        СоздатьЛевелМеню();
+        СоздатьЛевелМеню();        
     }
     void CreatePanelBossLevel()
     {
@@ -174,6 +187,8 @@ public class BossLevel : MonoBehaviour
         инфоОкно0.gameObject.SetActive(true);
         btnStart.gameObject.SetActive(true);
     }
+    
+
     void СоздатьЛевелМеню()
     {
         levelBossMenu = Instantiate(ResManager.instance.levelBossMenu, canvas);
@@ -301,20 +316,6 @@ public class BossLevel : MonoBehaviour
         enemyesCurrent = SortEnemyInitiative();
     }
 
-
-    void LevelBossResult()
-    {
-        levelBossResult = Instantiate(ResManager.instance.levelBossResult, canvas);
-        принять = levelBossResult.transform.GetChild(0).GetComponent<Button>();
-        принять.onClick.AddListener(delegate { Принять(); });
-    }
-
-    void Принять()
-    {
-        SceneManager.LoadScene("GlobalMap");
-    }
-
-
     void SpawnUnits()
     {
         List<General> mobs = CreateGeneralEnemy.CreateEnemy(levelName, 0);
@@ -324,6 +325,7 @@ public class BossLevel : MonoBehaviour
             TurnEnemy tEnemy = go.GetComponent<TurnEnemy>();
             if (tEnemy != null)
             {
+                tEnemy.cellNum = i;
                 tEnemy.general = mobs[i];
                 tEnemy.text.color = Colors.GreenColor;
                 enemyes.Add(tEnemy);
@@ -338,6 +340,7 @@ public class BossLevel : MonoBehaviour
                 GameObject go = Instantiate(выбрГенерал[i].general.prefab, spawnPlayer[i]);
                 TurnUnit tUnit = go.GetComponent<TurnUnit>();
                 tUnit.general = выбрГенерал[i].general;
+                tUnit.cellNum = i;
                 tUnit.text.color = Colors.GreenColor;
                 tUnit.text.text = выбрГенерал[i].general.PARAMS[GENERAL_HP_CURRENT].ToString();
                 units.Add(tUnit);
@@ -503,7 +506,7 @@ public class BossLevel : MonoBehaviour
 
     bool PlayerAttack()
     {
-        float damage = УронВрагу();
+        float damage = Combat.Attack(selectedUnit, selectedEnemy, SkillType.none, SkillTypeBonus.none, enemyes, units);
         selectedUnit.animator.Play("attack");
         selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] -= damage;
         GameObject gt = Instantiate(ResManager.instance.DamageText, selectedEnemy.transform);
@@ -543,7 +546,7 @@ public class BossLevel : MonoBehaviour
     {
         enemyesCurrent[0].animator.Play("attack");
         rHit = Random.Range(0, units.Count - 1);
-        float damage = УронИгроку();
+        float damage = Combat.Attack(enemyesCurrent[0], units[rHit], SkillType.none, SkillTypeBonus.none, enemyes, units);
         units[rHit].general.PARAMS[GENERAL_HP_CURRENT] -= damage;
         GameObject gt = Instantiate(ResManager.instance.DamageText, units[rHit].transform);
         gt.transform.position = units[rHit].transform.parent.transform.localPosition;
@@ -585,36 +588,93 @@ public class BossLevel : MonoBehaviour
         UcVsEc();
     }
 
-    float УронИгроку()
-    {
-        float уронИгроку = enemyesCurrent[0].general.PARAMS[GENERAL_DAMAGE_CURRENT] - units[rHit].general.PARAMS[GENERAL_DEFENSE_CURRENT];
-        Debug.Log(enemyesCurrent[0].general.PARAMS[GENERAL_DAMAGE_CURRENT] + " - " + units[rHit].general.PARAMS[GENERAL_DEFENSE_CURRENT]);
-        if (уронИгроку <= 0)
-        {
-            уронИгроку = 0;
-        }
-        return уронИгроку;
-    }
-    float УронВрагу()
-    {
-        float уронВрагу = selectedUnit.general.PARAMS[GENERAL_DAMAGE_CURRENT] - selectedEnemy.general.PARAMS[GENERAL_DEFENSE_CURRENT];
-        Debug.Log(selectedUnit.general.PARAMS[GENERAL_DAMAGE_CURRENT] + " - " + selectedEnemy.general.PARAMS[GENERAL_DEFENSE_CURRENT]);
-        if (уронВрагу <= 0)
-        {
-            уронВрагу = 0;
-        }
-        return уронВрагу;
-    }
-
-
     public void Winner()
     {
-        Debug.Log("гГ");
+        Time.timeScale = 0f;
+        isWinner = true;
         LevelBossResult();
     }
     public void Lose()
     {
-        Debug.Log("Лох");
+        Time.timeScale = 0f;
+        isWinner = false;
         LevelBossResult();
+    }
+
+    void LevelBossResult()
+    {
+        levelBossResult = Instantiate(ResManager.instance.levelBossResult, canvas);
+        принять = levelBossResult.transform.GetChild(0).GetComponent<Button>();
+        принять.onClick.AddListener(delegate { Принять(); });
+        resultText = levelBossResult.transform.GetChild(1).GetComponent<Text>();
+        trophysPanel = levelBossResult.transform.GetChild(2);
+        for(int i = 0; i < trophysPanel.childCount; i++)
+        {
+            trophys.Add(trophysPanel.GetChild(i));
+            trophys[i].gameObject.SetActive(false);
+        }
+        if(isWinner)
+        {
+            resultText.text = GameText.VictoryText();
+            List<TrophyRes> tRes = Trophy.GetRes(levelName);
+            Debug.Log("tResCount: " + tRes.Count);
+            List<TrophyRes> tResSort = new List<TrophyRes>();
+            for (int i = 0; i < tRes.Count; i++)
+            {
+                if(tRes[i].count > 0)
+                {
+                    tResSort.Add(tRes[i]);
+                }
+            }
+            Debug.Log("tResSortCount: " + tResSort.Count);
+            for (int i = 0; i < tResSort.Count; i++)
+            {
+                InfoResources res = GetInfoResources.GetInfo(tResSort[i].num);
+                trophys[i].GetChild(0).GetComponent<Image>().sprite = res.img;
+                trophys[i].GetChild(1).GetComponent<Text>().text = tResSort[i].count.ToString();
+                GameManager.resource[tResSort[i].num] += tResSort[i].count;
+                trophys[i].transform.GetComponent<ResBtn>().Name = res.name;
+                trophys[i].transform.GetComponent<ResBtn>().message = this;
+                trophys[i].gameObject.SetActive(true);
+            }
+        }
+        else
+            resultText.text = GameText.LoseText();
+    }
+
+    void Принять()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("GlobalMap");
+    }
+    
+    void CreateMessagePanel()
+    {
+        messagePanel = Instantiate(ResManager.instance.message, canvas);
+        messageText = messagePanel.transform.GetChild(0).transform.GetComponent<Text>();
+        messageButton = messagePanel.transform.GetChild(1).transform.GetComponent<Button>();
+        messageButton.onClick.AddListener(delegate { CloseMessage(); });
+        messagePanel.SetActive(false);
+    }
+
+    void CloseMessage()
+    {
+        messagePanel.SetActive(false);
+    }
+
+    public void OpenMessage(string text)
+    {
+        messageText.text = text;
+        messagePanel.SetActive(true);
+    }
+    
+
+    public void Send(string s)
+    {
+        if(messagePanel == null)
+        {
+            CreateMessagePanel();
+        }        
+        OpenMessage(s);
     }
 }

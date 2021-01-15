@@ -44,7 +44,10 @@ public class BarracksTown : MonoBehaviour
     private Slider countUnit;
     [SerializeField]
     Text countUnitT;
-
+    [SerializeField]
+    private GameObject оповещение;
+    [SerializeField]
+    Text оповещениеТекст;
 
     [Header("Наличие")]
     [SerializeField]
@@ -68,7 +71,7 @@ public class BarracksTown : MonoBehaviour
     private GameObject генералыНаличие;
 
 
-    
+
 
     private List<TownUnits> слотыСозданияЮнитов = new List<TownUnits>();
     private List<TownUnits> слотыНаличиеЮнитов = new List<TownUnits>();
@@ -101,7 +104,7 @@ public class BarracksTown : MonoBehaviour
         создать.SetActive(false);
         генералы.SetActive(true);
     }
-    
+
     public void ЗаполненияНаличие()
     {
         for (int i = 0; i < слотыНаличие.transform.childCount; i++)
@@ -142,7 +145,7 @@ public class BarracksTown : MonoBehaviour
             upgradeBtn.interactable = true;
             apgradeType = type;
         }
-            
+
     }
 
     public void ЗаполненияСоздание()
@@ -224,6 +227,11 @@ public class BarracksTown : MonoBehaviour
         ЗаполнениеРесурсов();
         имяСоздающегося.text = GameText.GetUnitName(создающийся.type);
         создать.SetActive(true);
+    }
+
+    public void ЗакрытьОповещение()
+    {
+        оповещение.SetActive(false);
     }
 
     public void ЗаполнениеРесурсов()
@@ -333,6 +341,13 @@ public class BarracksTown : MonoBehaviour
             rNCU.Clear();
             currentCountUnit = 1;
             ЗаполнениеРесурсов();
+            оповещениеТекст.text = "Создан кто-то";
+            оповещение.SetActive(true);
+        }
+        else
+        {
+            оповещениеТекст.text = "Иди крабь нуб";
+            оповещение.SetActive(true);
         }
     }
 

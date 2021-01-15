@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 public class ArenaTown : MonoBehaviour
 {
     [SerializeField]
-    private GameObject ВыборЛиги;
+    private GameObject выборЛиги;
     [SerializeField]
-    private GameObject ЛигаНовичка;
+    private GameObject лигаНовичка;
     public void ОткрытьАрену()
     {
-        ЛигаНовичка.SetActive(false);
-        ВыборЛиги.SetActive(true);
+        лигаНовичка.SetActive(false);
+        выборЛиги.SetActive(true);
+    }
+    public void ОткрытьЛигаНовичка()
+    {
+        лигаНовичка.SetActive(true  );
     }
     public void ToArena()
     {

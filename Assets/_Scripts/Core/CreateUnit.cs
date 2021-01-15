@@ -16,7 +16,7 @@ public static class CreateUnit
                 unit.PARAMS[UNIT_COST] = 5;
                 unit.PARAMS[UNIT_HP_MAX] = 5;
                 unit.PARAMS[UNIT_HP_REGEN] = 1;
-                unit.PARAMS[UNIT_ATTACK_DELAY] = 15;
+                unit.PARAMS[UNIT_ATTACK_DELAY] = 5;
                 unit.PARAMS[UNIT_DISTANCE] = 5;
                 unit.PARAMS[UNIT_SPEED] = 1f;
                 unit.PARAMS[UNIT_DAMAGE] = 5;
@@ -35,7 +35,7 @@ public static class CreateUnit
                 unit.PARAMS[UNIT_COST] = 10;
                 unit.PARAMS[UNIT_HP_MAX] = 20;
                 unit.PARAMS[UNIT_HP_REGEN] = 2;
-                unit.PARAMS[UNIT_ATTACK_DELAY] = 10;
+                unit.PARAMS[UNIT_ATTACK_DELAY] = 4;
                 unit.PARAMS[UNIT_SPEED] = 0.4f;
                 unit.PARAMS[UNIT_DAMAGE] = 10;
                 unit.PARAMS[UNIT_CRIT_DAMAGE] = 1.5f;
@@ -54,7 +54,7 @@ public static class CreateUnit
                 unit.PARAMS[UNIT_COST] = 15;
                 unit.PARAMS[UNIT_HP_MAX] = 30;
                 unit.PARAMS[UNIT_HP_REGEN] = 3;
-                unit.PARAMS[UNIT_ATTACK_DELAY] = 5;
+                unit.PARAMS[UNIT_ATTACK_DELAY] = 2;
                 unit.PARAMS[UNIT_SPEED] = 0.6f;
                 unit.PARAMS[UNIT_DAMAGE] = 15;
                 unit.PARAMS[UNIT_CRIT_DAMAGE] = 1.8f;

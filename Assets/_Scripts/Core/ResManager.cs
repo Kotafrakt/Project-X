@@ -16,6 +16,7 @@ public class ResManager : MonoBehaviour
     public GameObject levelBossResult;
     public GameObject finished;
     public GameObject DamageText;
+    public GameObject message;
 
     [Header("Юниты")]
     public GameObject[] units;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static Defines;
 
 public class PlayUnit : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class PlayUnit : MonoBehaviour
     private void Start()
     {
         unit = transform;
+        damage = baseUnit.PARAMS[UNIT_DAMAGE];
         unitCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
         navigationTime = 0.02f;

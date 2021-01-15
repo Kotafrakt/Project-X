@@ -1,4 +1,6 @@
-﻿public static class GameText
+﻿using UnityEngine;
+
+public static class GameText
 {
     public static string GetUnitName(UnitType type)
     {
@@ -133,6 +135,80 @@
             {
                 case EnemyType.war0:
                     description = "First-level warrior";
+                    break;
+            }
+        }
+        return description;
+    }
+
+    public static string VictoryText()
+    {
+        string description = "";
+        int textRnd = Random.Range(0, 2);
+        if (GameManager.instance.isRussian)
+        {
+            switch (textRnd)
+            {
+                case 0:
+                    description = "Победа!";
+                    break;
+                case 1:
+                    description = "Победа! Можно собирать трофеи!";
+                    break;
+                case 2:
+                    description = "Враг повержен!";
+                    break;
+            }
+        }
+        else
+        {
+            switch (textRnd)
+            {
+                case 0:
+                    description = "Victory!!!";
+                    break;
+                case 1:
+                    description = "Victory!!!";
+                    break;
+                case 2:
+                    description = "Victory!!!";
+                    break;
+            }
+        }
+        return description;
+    }
+
+    public static string LoseText()
+    {
+        string description = "";
+        int textRnd = Random.Range(0, 2);
+        if (GameManager.instance.isRussian)
+        {
+            switch (textRnd)
+            {
+                case 0:
+                    description = "Поражение!";
+                    break;
+                case 1:
+                    description = "Вы потерпели поражение!";
+                    break;
+                case 2:
+                    description = "Может в следующий раз повезёт..";
+                    break;
+            }
+        }
+        else
+        {
+            switch (textRnd)
+            {
+                case 0:
+                    description = "You lose!!!";
+                    break;
+                case 1:
+                    description = "You lose!!!";
+                    break;
+                case 2:
+                    description = "You lose!!!";
                     break;
             }
         }

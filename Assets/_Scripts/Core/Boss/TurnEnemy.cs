@@ -2,20 +2,15 @@
 using UnityEngine.EventSystems;
 using static Defines;
 
-public class TurnEnemy : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class TurnEnemy : TurnBase, IPointerDownHandler, IPointerUpHandler
 {
-    public General general;
-    public TextMesh text;
     BossLevel bossLevel;
     GameObject hexPoint;
-
-    public bool isEndTurn = false;
 
     float time = 0;
     bool isDown = false;
     bool isShowInfo = false;
 
-    public Animator animator;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -67,18 +62,22 @@ public class TurnEnemy : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (bossLevel.enemyes.Count > 0)
             {
                 bossLevel.selectedEnemy = bossLevel.enemyes[0];
+                UnSelected();
+                animator.Play("die");
+                Destroy(gameObject, 2.1f);
             }
             else
             {
-                bossLevel.Winner();
-            }
-            UnSelected();
-            animator.Play("die");
-            Invoke("Destr", 2f);
+                UnSelected();
+                animator.Play("die");
+                Invoke("Winner", 2f);
+            }            
         }
     }
-    void Destr()
+
+    void Winner()
     {
+        bossLevel.Winner();
         Destroy(gameObject);
     }
 

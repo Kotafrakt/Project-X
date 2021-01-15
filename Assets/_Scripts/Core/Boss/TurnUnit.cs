@@ -3,21 +3,17 @@ using UnityEngine.EventSystems;
 using static Defines;
 
 
-public class TurnUnit : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class TurnUnit : TurnBase, IPointerDownHandler, IPointerUpHandler
 {
-    public General general;
     public Unit unit;
-    public TextMesh text;
     BossLevel bossLevel;
     GameObject hexPoint;
 
-    public bool isEndTurn = false;
 
     float time = 0;
     bool isDown = false;
     bool isShowInfo = false;
 
-    public Animator animator;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -52,20 +48,22 @@ public class TurnUnit : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (bossLevel.units.Count > 0)
             {
                 bossLevel.selectedUnit = bossLevel.units[0];
+                UnSelected();
+                animator.Play("die");
+                Destroy(gameObject, 2.1f);
             }
             else
             {
-                bossLevel.Lose();
-            }
-            UnSelected();
-            animator.Play("die");
-            Invoke("Destr", 2f);
-
-
+                UnSelected();
+                animator.Play("die");
+                Invoke("Lose", 2f);
+            }           
         }
     }
-    void Destr()
+
+    void Lose()
     {
+        bossLevel.Lose();
         Destroy(gameObject);
     }
 
