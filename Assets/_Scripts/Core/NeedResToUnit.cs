@@ -39,6 +39,10 @@ public static class NeedResToUnit
                 res.units.Add(UnitType.ZombieV0, 3);
                 res.units.Add(UnitType.ZombieV1, 1);
                 break;
+            case UnitType.Engineer:
+                res.resource[GOLD] = 10;
+                res.resource[BODY] = 5;
+                break;
         }
         return res;
     }

@@ -27,6 +27,9 @@ public static class GameText
                 case UnitType.ZombieV2:
                     name = "ЗомбиV2";
                     break;
+                case UnitType.Engineer:
+                    name = "ИгженерV0";
+                    break;
             }
         }
         else
@@ -50,6 +53,9 @@ public static class GameText
                     break;
                 case UnitType.ZombieV2:
                     name = "ZombieV2";
+                    break;
+                case UnitType.Engineer:
+                    name = "EngineerV0";
                     break;
             }
         }

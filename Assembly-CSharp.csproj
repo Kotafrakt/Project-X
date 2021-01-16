@@ -68,12 +68,14 @@
     <Compile Include="Assets\_Scripts\Buttons\GeneralBtn.cs" />
     <Compile Include="Assets\_Scripts\Buttons\ResBtn.cs" />
     <Compile Include="Assets\_Scripts\Buttons\SelectUnitButton.cs" />
+    <Compile Include="Assets\_Scripts\Buttons\SkillBtn.cs" />
     <Compile Include="Assets\_Scripts\Colors.cs" />
     <Compile Include="Assets\_Scripts\Core\AvailableList.cs" />
     <Compile Include="Assets\_Scripts\Core\BlockPoint.cs" />
     <Compile Include="Assets\_Scripts\Core\Boss\BossLevel.cs" />
     <Compile Include="Assets\_Scripts\Core\Boss\Combat.cs" />
     <Compile Include="Assets\_Scripts\Core\Boss\CreateGeneralEnemy.cs" />
+    <Compile Include="Assets\_Scripts\Core\Boss\SkillInfo.cs" />
     <Compile Include="Assets\_Scripts\Core\Boss\TurnBase.cs" />
     <Compile Include="Assets\_Scripts\Core\Boss\TurnEnemy.cs" />
     <Compile Include="Assets\_Scripts\Core\Boss\TurnUnit.cs" />

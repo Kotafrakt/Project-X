@@ -42,13 +42,18 @@ public class BossLevel : MonoBehaviour, IMessage
     Button бежать;
     Button настройки;
     Button выход;
-    Button hit;
-    Button skill0;
-    Button skill1;
-    Button skill2;
-    Button skillSuper;
     Button attack;
     Button отмена;
+
+    SkillBtn defaultSkill;
+    SkillBtn skill_0;
+    SkillBtn skill_1;
+    SkillBtn skill_2;
+    SkillBtn skill_B;
+    SkillName skillName = SkillName.none;
+    SkillNameB skillNameB = SkillNameB.none;
+
+    int skill_lvl = 0;
 
     GameObject выбранные;
     GameObject доступные;
@@ -239,38 +244,68 @@ public class BossLevel : MonoBehaviour, IMessage
     void CreatePanelBossDawn()
     {
         playBossPanelDown = Instantiate(ResManager.instance.playBossPanelDown, canvas);
-        hit = playBossPanelDown.transform.GetChild(0).GetComponent<Button>();
-        hit.onClick.AddListener(delegate { Hit(); });
-        skill0 = playBossPanelDown.transform.GetChild(1).GetComponent<Button>();
-        skill0.onClick.AddListener(delegate { Skill0(); });
-        skill1 = playBossPanelDown.transform.GetChild(2).GetComponent<Button>();
-        skill1.onClick.AddListener(delegate { Skill1(); });
-        skill2 = playBossPanelDown.transform.GetChild(3).GetComponent<Button>();
-        skill2.onClick.AddListener(delegate { Skill2(); });
-        skillSuper = playBossPanelDown.transform.GetChild(4).GetComponent<Button>();
-        skillSuper.onClick.AddListener(delegate { SkillSuper(); });
+        defaultSkill = playBossPanelDown.transform.GetChild(0).GetComponent<SkillBtn>();
+        defaultSkill.onClick.AddListener(delegate { DefaultSkill(); });
+        skill_0 = playBossPanelDown.transform.GetChild(1).GetComponent<SkillBtn>();
+        skill_0.onClick.AddListener(delegate { Skill_0(); });
+        skill_1 = playBossPanelDown.transform.GetChild(2).GetComponent<SkillBtn>();
+        skill_1.onClick.AddListener(delegate { Skill_1(); });
+        skill_2 = playBossPanelDown.transform.GetChild(3).GetComponent<SkillBtn>();
+        skill_2.onClick.AddListener(delegate { Skill_2(); });
+        skill_B = playBossPanelDown.transform.GetChild(4).GetComponent<SkillBtn>();
+        skill_B.onClick.AddListener(delegate { Skill_B(); });
         attack = playBossPanelDown.transform.GetChild(5).GetComponent<Button>();
         attack.onClick.AddListener(delegate { Attack(); });
     }
-    void Hit()
+    void DefaultSkill()
     {
-        Debug.Log("Hit");
+        skillName = SkillName.none;
+        skill_0.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_1.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_2.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_B.GetComponent<Image>().color = Colors.WhiteColor;
+        defaultSkill.GetComponent<Image>().color = Colors.GreenColor;
+        skill_lvl = 0;
     }
-    void Skill0()
+    void Skill_0()
     {
-        Debug.Log("Skill0");
+        skillName = skill_0.skillName;
+        defaultSkill.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_1.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_2.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_B.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_0.GetComponent<Image>().color = Colors.GreenColor;
+        skill_lvl = skill_0.skill_lvl;
     }
-    void Skill1()
+    void Skill_1()
     {
-        Debug.Log("Skill1");
+        skillName = skill_1.skillName;
+        defaultSkill.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_0.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_2.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_B.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_1.GetComponent<Image>().color = Colors.GreenColor;
+        skill_lvl = skill_1.skill_lvl;
     }
-    void Skill2()
+    void Skill_2()
     {
-        Debug.Log("Skill2");
+        skillName = skill_2.skillName;
+        defaultSkill.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_0.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_1.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_B.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_2.GetComponent<Image>().color = Colors.GreenColor;
+        skill_lvl = skill_2.skill_lvl;
     }
-    void SkillSuper()
+    void Skill_B()
     {
-        Debug.Log("SkillSuper");
+        skillNameB = skill_B.skillNameB;
+        defaultSkill.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_0.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_1.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_2.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_B.GetComponent<Image>().color = Colors.GreenColor;
+        skill_lvl = skill_B.skill_lvl;
     }
     void Attack()
     {
@@ -426,7 +461,6 @@ public class BossLevel : MonoBehaviour, IMessage
         }
         else e = 0;
 
-        Debug.Log(unitsCurrent.Count + " uC " + enemyesCurrent.Count + " eC");
         if (u >= e && unitsCurrent.Count > 0 && enemyesCurrent.Count > 0)
         {
             selectedUnit = unitsCurrent[0];
@@ -437,6 +471,7 @@ public class BossLevel : MonoBehaviour, IMessage
             selectedEnemy.Select();
             selectedUnit.Select();
             attack.interactable = true;
+            WriteSkills();
         }
         else if (u < e && unitsCurrent.Count > 0 && enemyesCurrent.Count > 0)
         {
@@ -456,6 +491,7 @@ public class BossLevel : MonoBehaviour, IMessage
             selectedEnemy.Select();
             selectedUnit.Select();
             attack.interactable = true;
+            WriteSkills();
         }
         else if (unitsCurrent.Count == 0 && enemyesCurrent.Count > 0)
         {
@@ -484,6 +520,73 @@ public class BossLevel : MonoBehaviour, IMessage
         }
     }
 
+    void WriteSkills()
+    {
+        if (selectedUnit.general.skill0 != SkillName.none)
+        {
+            skill_0.interactable = true;
+            skill_0.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill0).img;
+            skill_0.transform.GetChild(0).gameObject.SetActive(true);
+            skill_0.skillName = selectedUnit.general.skill0;
+            skill_0.skill_lvl = selectedUnit.general.skill_lvl_0;
+        }
+        if (selectedUnit.general.skill1 != SkillName.none)
+        {
+            skill_1.interactable = true;
+            skill_1.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill1).img;
+            skill_1.transform.GetChild(0).gameObject.SetActive(true);
+            skill_1.skillName = selectedUnit.general.skill1;
+            skill_1.skill_lvl = selectedUnit.general.skill_lvl_1;
+        }
+        if (selectedUnit.general.skill2 != SkillName.none)
+        {
+            skill_2.interactable = true;
+            skill_2.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill2).img;
+            skill_2.transform.GetChild(0).gameObject.SetActive(true);
+            skill_2.skillName = selectedUnit.general.skill2;
+            skill_2.skill_lvl = selectedUnit.general.skill_lvl_2;
+        }
+        if (selectedUnit.general.skillB != SkillNameB.none)
+        {
+            skill_B.interactable = true;
+            skill_B.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkillB(selectedUnit.general.skillB).img;
+            skill_B.transform.GetChild(0).gameObject.SetActive(true);
+            skill_B.skillNameB = selectedUnit.general.skillB;
+            skill_B.skill_lvl = selectedUnit.general.skill_lvl_B;
+        }
+    }
+
+    void CleanSkills()
+    {
+        if (selectedUnit.general.skill0 != SkillName.none)
+        {
+            skill_0.interactable = false;
+            skill_0.transform.GetChild(0).GetComponent<Image>().sprite = null;
+            skill_0.transform.GetChild(0).gameObject.SetActive(false);
+            skill_0.skillName = SkillName.none;
+        }
+        if (selectedUnit.general.skill1 != SkillName.none)
+        {
+            skill_1.interactable = false;
+            skill_1.transform.GetChild(0).GetComponent<Image>().sprite = null;
+            skill_1.transform.GetChild(0).gameObject.SetActive(false);
+            skill_1.skillName = SkillName.none;
+        }
+        if (selectedUnit.general.skill2 != SkillName.none)
+        {
+            skill_2.interactable = false;
+            skill_2.transform.GetChild(0).GetComponent<Image>().sprite = null;
+            skill_2.transform.GetChild(0).gameObject.SetActive(false);
+            skill_2.skillName = SkillName.none;
+        }
+        if (selectedUnit.general.skillB != SkillNameB.none)
+        {
+            skill_B.interactable = false;
+            skill_B.transform.GetChild(0).GetComponent<Image>().sprite = null;
+            skill_B.transform.GetChild(0).gameObject.SetActive(false);
+            skill_B.skillNameB = SkillNameB.none;
+        }
+    }
 
     bool TurnPlayer()
     {
@@ -506,77 +609,122 @@ public class BossLevel : MonoBehaviour, IMessage
 
     bool PlayerAttack()
     {
-        float damage = Combat.Attack(selectedUnit, selectedEnemy, SkillType.none, SkillTypeBonus.none, enemyes, units);
-        selectedUnit.animator.Play("attack");
-        selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] -= damage;
-        GameObject gt = Instantiate(ResManager.instance.DamageText, selectedEnemy.transform);
-        gt.transform.position = new Vector3(selectedEnemy.transform.parent.transform.position.x, selectedEnemy.transform.parent.transform.position.y, 5f);
-        DamageText dt = gt.GetComponent<DamageText>();
-        dt.startMitonEnemy("-" + damage, Colors.RedColor);
-        if (selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] > 0)
+        bool targetIsDead = false;
+        List<TurnBase> enemyesOut = new List<TurnBase>();
+        foreach(TurnBase enemy in enemyes)
         {
-            selectedEnemy.animator.Play("hart");
-            if (selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] > selectedEnemy.general.PARAMS[GENERAL_HP] / 4 * 3) //75+%
-            {
-                selectedEnemy.text.color = Colors.GreenColor;
-            }
-            else if (selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] < selectedEnemy.general.PARAMS[GENERAL_HP] / 4 * 3 && selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] > selectedEnemy.general.PARAMS[GENERAL_HP] / 2) //50% + /75%-
-            {
-                selectedEnemy.text.color = Colors.YellowColor;
-            }
-            else if (selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] < selectedEnemy.general.PARAMS[GENERAL_HP] / 2 && selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] > selectedEnemy.general.PARAMS[GENERAL_HP] / 4) //25%+ / 50%-
-            {
-                selectedEnemy.text.color = Colors.Orange;
-            }
-            else if (selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] < selectedEnemy.general.PARAMS[GENERAL_HP] / 4 && selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT] > 0) //0+ / 25-
-            {
-                selectedEnemy.text.color = Colors.RedColor;
-            }
-            selectedEnemy.text.text = selectedEnemy.general.PARAMS[GENERAL_HP_CURRENT].ToString();
-            selectedUnit.isEndTurn = true;
-            return false;
+            enemyesOut.Add(enemy);
         }
-        else
+        List<TurnBase> unitsOut = new List<TurnBase>();
+        foreach (TurnBase unit in units)
         {
-            selectedUnit.isEndTurn = true;
-            return true;
+            unitsOut.Add(unit);
         }
+
+        List<CombatResult> combatResults = Combat.Attack(selectedUnit, selectedEnemy, skillName, skillNameB, enemyesOut, unitsOut, skill_lvl);
+        for(int i = 0; i < combatResults.Count; i++)
+        {
+            TurnBase target = combatResults[i].target;
+            float damage = combatResults[i].damage;
+            target.general.PARAMS[GENERAL_HP_CURRENT] -= damage;
+            GameObject gt = Instantiate(ResManager.instance.DamageText, target.transform);
+            gt.transform.position = new Vector3(target.transform.parent.transform.position.x, target.transform.parent.transform.position.y, 5f);
+            DamageText dt = gt.GetComponent<DamageText>();
+            dt.startMitonEnemy("-" + damage, Colors.RedColor);
+
+            if (target.general.PARAMS[GENERAL_HP_CURRENT] > 0)
+            {
+                target.animator.Play("hart");
+                if (target.general.PARAMS[GENERAL_HP_CURRENT] > target.general.PARAMS[GENERAL_HP] / 4 * 3) //75+%
+                {
+                    target.text.color = Colors.GreenColor;
+                }
+                else if (target.general.PARAMS[GENERAL_HP_CURRENT] < target.general.PARAMS[GENERAL_HP] / 4 * 3 && target.general.PARAMS[GENERAL_HP_CURRENT] > target.general.PARAMS[GENERAL_HP] / 2) //50% + /75%-
+                {
+                    target.text.color = Colors.YellowColor;
+                }
+                else if (target.general.PARAMS[GENERAL_HP_CURRENT] < target.general.PARAMS[GENERAL_HP] / 2 && target.general.PARAMS[GENERAL_HP_CURRENT] > target.general.PARAMS[GENERAL_HP] / 4) //25%+ / 50%-
+                {
+                    target.text.color = Colors.Orange;
+                }
+                else if (target.general.PARAMS[GENERAL_HP_CURRENT] < target.general.PARAMS[GENERAL_HP] / 4 && target.general.PARAMS[GENERAL_HP_CURRENT] > 0) //0+ / 25-
+                {
+                    target.text.color = Colors.RedColor;
+                }
+                target.text.text = target.general.PARAMS[GENERAL_HP_CURRENT].ToString();
+            }
+            else
+                targetIsDead = true;
+        }
+        selectedUnit.isEndTurn = true;
+        selectedUnit.animator.Play("attack");        
+        selectedUnit.isEndTurn = true;
+        skillName = SkillName.none;
+        skillNameB = SkillNameB.none;
+        skill_lvl = 0;
+        CleanSkills();
+        return targetIsDead;
     }
     void EnemyAttack()
     {
         enemyesCurrent[0].animator.Play("attack");
         rHit = Random.Range(0, units.Count - 1);
-        float damage = Combat.Attack(enemyesCurrent[0], units[rHit], SkillType.none, SkillTypeBonus.none, enemyes, units);
-        units[rHit].general.PARAMS[GENERAL_HP_CURRENT] -= damage;
-        GameObject gt = Instantiate(ResManager.instance.DamageText, units[rHit].transform);
-        gt.transform.position = units[rHit].transform.parent.transform.localPosition;
-        DamageText dt = gt.GetComponent<DamageText>();
-        dt.startMitonUnit("-" + damage, Colors.RedColor);
-        if (units[rHit].general.PARAMS[GENERAL_HP_CURRENT] > 0)
+        bool targetIsDead = false;
+        List<TurnBase> enemyesOut = new List<TurnBase>();
+        foreach (TurnBase enemy in enemyes)
         {
-            units[rHit].animator.Play("hart");
-            if (units[rHit].general.PARAMS[GENERAL_HP_CURRENT] > units[rHit].general.PARAMS[GENERAL_HP] / 4 * 3) //75+%
+            enemyesOut.Add(enemy);
+        }
+        List<TurnBase> unitsOut = new List<TurnBase>();
+        foreach (TurnBase unit in units)
+        {
+            unitsOut.Add(unit);
+        }
+
+        List<CombatResult> combatResults = Combat.Attack(enemyesCurrent[0], units[rHit], skillName, skillNameB, enemyesOut, unitsOut, skill_lvl);
+        for (int i = 0; i < combatResults.Count; i++)
+        {
+            TurnBase target = combatResults[i].target;
+            float damage = combatResults[i].damage;
+            target.general.PARAMS[GENERAL_HP_CURRENT] -= damage;
+            GameObject gt = Instantiate(ResManager.instance.DamageText, target.transform);
+            gt.transform.position = target.transform.parent.transform.localPosition;
+            DamageText dt = gt.GetComponent<DamageText>();
+            dt.startMitonUnit("-" + damage, Colors.RedColor);
+            if (target.general.PARAMS[GENERAL_HP_CURRENT] > 0)
             {
-                units[rHit].text.color = Colors.GreenColor;
+                target.animator.Play("hart");
+                if (target.general.PARAMS[GENERAL_HP_CURRENT] > target.general.PARAMS[GENERAL_HP] / 4 * 3) //75+%
+                {
+                    target.text.color = Colors.GreenColor;
+                }
+                else if (target.general.PARAMS[GENERAL_HP_CURRENT] < target.general.PARAMS[GENERAL_HP] / 4 * 3 && target.general.PARAMS[GENERAL_HP_CURRENT] > target.general.PARAMS[GENERAL_HP] / 2) //50% + /75%-
+                {
+                    target.text.color = Colors.YellowColor;
+                }
+                else if (target.general.PARAMS[GENERAL_HP_CURRENT] < target.general.PARAMS[GENERAL_HP] / 2 && target.general.PARAMS[GENERAL_HP_CURRENT] > target.general.PARAMS[GENERAL_HP] / 4) //25%+ / 50%-
+                {
+                    target.text.color = Colors.Orange;
+                }
+                else if (target.general.PARAMS[GENERAL_HP_CURRENT] < target.general.PARAMS[GENERAL_HP] / 4 && target.general.PARAMS[GENERAL_HP_CURRENT] > 0) //0+ / 25-
+                {
+                    target.text.color = Colors.RedColor;
+                }
+                target.text.text = target.general.PARAMS[GENERAL_HP_CURRENT].ToString();
             }
-            else if (units[rHit].general.PARAMS[GENERAL_HP_CURRENT] < units[rHit].general.PARAMS[GENERAL_HP] / 4 * 3 && units[rHit].general.PARAMS[GENERAL_HP_CURRENT] > units[rHit].general.PARAMS[GENERAL_HP] / 2) //50% + /75%-
-            {
-                units[rHit].text.color = Colors.YellowColor;
-            }
-            else if (units[rHit].general.PARAMS[GENERAL_HP_CURRENT] < units[rHit].general.PARAMS[GENERAL_HP] / 2 && units[rHit].general.PARAMS[GENERAL_HP_CURRENT] > units[rHit].general.PARAMS[GENERAL_HP] / 4) //25%+ / 50%-
-            {
-                units[rHit].text.color = Colors.Orange;
-            }
-            else if (units[rHit].general.PARAMS[GENERAL_HP_CURRENT] < units[rHit].general.PARAMS[GENERAL_HP] / 4 && units[rHit].general.PARAMS[GENERAL_HP_CURRENT] > 0) //0+ / 25-
-            {
-                units[rHit].text.color = Colors.RedColor;
-            }
-            units[rHit].text.text = units[rHit].general.PARAMS[GENERAL_HP_CURRENT].ToString();
-            Invoke("EnemyAttackDelay", 1f);
+            else
+                targetIsDead = true;
+        }
+        skillName = SkillName.none;
+        skillNameB = SkillNameB.none;
+        skill_lvl = 0;
+        if (targetIsDead)
+        {
+            Invoke("EnemyAttackDelay", 3f);
         }
         else
         {
-            Invoke("EnemyAttackDelay", 3f);
+            Invoke("EnemyAttackDelay", 1f);
         }
     }
 

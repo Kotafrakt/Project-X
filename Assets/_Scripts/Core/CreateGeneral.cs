@@ -13,12 +13,12 @@ public static class CreateGeneral
         general.prefab = ResManager.instance.gens[i];
         general.img = ResManager.instance.genImg[i];
         general.img2 = ResManager.instance.genImg2[i];
-        general.PARAMS[GENERAL_STRENGTH] = Random.Range(3, 8);                                                                //Сила
-        general.PARAMS[GENERAL_AGILITY] = Random.Range(3, 8);                                                                 //Ловкость
-        general.PARAMS[GENERAL_INTELLECT] = Random.Range(3, 8);                                                               //Интеллект
-        general.PARAMS[GENERAL_EXP] = 0;
-        general.PARAMS[GENERAL_LEVEL] = Random.Range(3, 8);
-        general.PARAMS[GENERAL_HP] = 50 + 5 * general.PARAMS[GENERAL_STRENGTH];                                                                      //Жизни
+        general.PARAMS[GENERAL_LEVEL] = Random.Range(7, 15);
+        general.PARAMS[GENERAL_STRENGTH] = Random.Range(3, 8) + (Random.Range(1, 3) * general.PARAMS[GENERAL_LEVEL]) - 2;                                                                //Сила
+        general.PARAMS[GENERAL_AGILITY] = Random.Range(3, 8) + (Random.Range(1, 3) * general.PARAMS[GENERAL_LEVEL]) - 2;       //Ловкость
+        general.PARAMS[GENERAL_INTELLECT] = Random.Range(3, 8) + (Random.Range(1, 3) * general.PARAMS[GENERAL_LEVEL]) - 2;       //Интеллект
+        general.PARAMS[GENERAL_EXP] = 0;        
+        general.PARAMS[GENERAL_HP] = 500 + 5 * general.PARAMS[GENERAL_STRENGTH];                                                                      //Жизни
         general.PARAMS[GENERAL_MANA] = 10 + 5 * general.PARAMS[GENERAL_INTELLECT];                                                                    //Мана
         general.PARAMS[GENERAL_DAMAGE] = 10 + (3 * general.PARAMS[GENERAL_STRENGTH] + general.PARAMS[GENERAL_INTELLECT]) / 2;                                                                  //Урон физический
         general.PARAMS[GENERAL_DAMAGE_ICE] = 0;                                                               //Урон ледяной
@@ -36,11 +36,15 @@ public static class CreateGeneral
         general.PARAMS[GENERAL_INITIATIVE] = 0 + general.PARAMS[GENERAL_INTELLECT] * 5;                                                              //Инициатива
         general.PARAMS[GENERAL_PARRY] = 0 + general.PARAMS[GENERAL_AGILITY] / 5;                                                                   //Парирование удара/отражение
 
-        general.skill0 = SkillType.skill0;
-        general.skill0 = SkillType.skill1;
-        general.skill0 = SkillType.skill2;
+        general.skill0 = SkillName.skill0;
+        general.skill_lvl_0 = 2;
+        general.skill1 = SkillName.skill1;
+        general.skill_lvl_1 = 2;
+        general.skill2 = SkillName.skill2;
+        general.skill_lvl_2 = 2;
 
-        general.skillB= SkillTypeBonus.skillB0;
+        general.skillB = SkillNameB.skillB0;
+        general.skill_lvl_B = 2;
 
         //Боевые параметры(Текущий)
         general.PARAMS[GENERAL_HP_CURRENT] = general.PARAMS[GENERAL_HP];
@@ -75,7 +79,7 @@ public static class CreateGeneral
         general.PARAMS[GENERAL_STRENGTH] = Random.Range(3, 8) + (Random.Range(1, 3) * general.PARAMS[GENERAL_LEVEL]) - 2;                                                                //Сила
         general.PARAMS[GENERAL_AGILITY] = Random.Range(3, 8) + (Random.Range(1, 3) * general.PARAMS[GENERAL_LEVEL]) - 2;                                                                 //Ловкость
         general.PARAMS[GENERAL_INTELLECT] = Random.Range(3, 8) + (Random.Range(1, 3) * general.PARAMS[GENERAL_LEVEL]) - 2;                                                               //Интеллект
-        general.PARAMS[GENERAL_HP] = 50 + 4 * general.PARAMS[GENERAL_STRENGTH];                                                                      //Жизни
+        general.PARAMS[GENERAL_HP] = 500 + 4 * general.PARAMS[GENERAL_STRENGTH];                                                                      //Жизни
         general.PARAMS[GENERAL_MANA] = 10 + 5 * general.PARAMS[GENERAL_INTELLECT];                                                                    //Мана
         general.PARAMS[GENERAL_DAMAGE] = 10 + (3 * general.PARAMS[GENERAL_STRENGTH] + general.PARAMS[GENERAL_INTELLECT]) / 2;                                                                  //Урон физический
         general.PARAMS[GENERAL_DAMAGE_ICE] = 0;                                                               //Урон ледяной

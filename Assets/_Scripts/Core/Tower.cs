@@ -15,54 +15,61 @@ public class Tower : MonoBehaviour
     bool isAttacking = false;
     Unit unit;
     [SerializeField]
-    float speedProjectile = 10f; 
+    float speedProjectile = 10f;
+    public bool isDead = false;
+    public float hp = 15;
+    SpriteRenderer img;
 
     void Start()
     {
         unit = null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        img = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
     {
-        attackCouter -= Time.deltaTime;
-        PlayUnit nearestEnemy = null;
-        if (GetNearestEnemy() != null)
+        if (hp <= 0)
         {
-            nearestEnemy = GetNearestEnemy();
+            isDead = true;
+            GetComponent<Collider2D>().enabled = false;
+            img.color = Colors.TGrаy;
         }
-        if (targetEnemy == null || targetEnemy.IsDead)
+        if(!isDead)
         {
-            if (nearestEnemy != null)
+            attackCouter -= Time.deltaTime;
+            PlayUnit nearestEnemy = null;
+            if (GetNearestEnemy() != null)
             {
-                targetEnemy = nearestEnemy;
+                nearestEnemy = GetNearestEnemy();
             }
-        }
-        else
-        {
-            if (attackCouter <= 0)
+            if (targetEnemy == null || targetEnemy.IsDead)
             {
-                isAttacking = true;
-                attackCouter = timeBetWeenAttacks;
+                if (nearestEnemy != null)
+                {
+                    targetEnemy = nearestEnemy;
+                }
             }
             else
             {
-                isAttacking = false;
+                if (attackCouter <= 0)
+                {
+                    isAttacking = true;
+                    attackCouter = timeBetWeenAttacks;
+                }
+                else
+                {
+                    isAttacking = false;
+                }
+                if (Vector2.Distance(transform.localPosition, targetEnemy.transform.localPosition) > attackRadius)
+                {
+                    targetEnemy = null;
+                }
             }
-            if (Vector2.Distance(transform.localPosition, targetEnemy.transform.localPosition) > attackRadius)
+            if (isAttacking)
             {
-                targetEnemy = null;
+                Attack();
             }
-        }
-        if (isAttacking)
-        {
-            Attack();
-        }
+        }        
     }
 
     public void Attack()
@@ -99,6 +106,12 @@ public class Tower : MonoBehaviour
     {
         while (GetTargetDistance(targetEnemy) > 0.2f && projectile != null && targetEnemy != null)
         {
+            if(targetEnemy.baseUnit.type == UnitType.Engineer)
+            {
+                Destroy(projectile);
+                yield break;
+            }
+                
             if (projectile != null && targetEnemy == null)
             {
                 Destroy(projectile);

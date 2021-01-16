@@ -146,6 +146,9 @@ public class GameManager : MonoBehaviour
         units[4].PARAMS[UNIT_COUNT] = 0;
         units.Add(CreateUnit.UnitCreate(UnitType.ZombieV2));
         units[5].PARAMS[UNIT_COUNT] = 1;
+        units.Add(CreateUnit.UnitCreate(UnitType.Engineer));
+        units[5].PARAMS[UNIT_COUNT] = 0;
+
 
         itemsArena.Add(CreateItem.Head_0());
         itemsArena.Add(CreateItem.Head_1());

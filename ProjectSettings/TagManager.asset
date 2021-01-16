@@ -8,6 +8,7 @@ TagManager:
   - MoviengPoint
   - Projectile
   - Block
+  - Tower
   layers:
   - Default
   - TransparentFX

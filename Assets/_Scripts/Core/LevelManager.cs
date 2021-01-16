@@ -65,6 +65,7 @@ public class LevelManager : MonoBehaviour
         runingUnit.Add(UnitType.ZombieV0, false);
         runingUnit.Add(UnitType.ZombieV1, false);
         runingUnit.Add(UnitType.ZombieV2, false);
+        runingUnit.Add(UnitType.Engineer, false);
     }
     private void FixedUpdate()
     {

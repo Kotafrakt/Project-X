@@ -12,7 +12,7 @@ public class Colors : MonoBehaviour
     public static Color Resol = new Color(248, 233, 260);
     public static Color TRed = new Color(253, 78, 13);
     public static Color TGreen = new Color(133, 195, 0);
-    public static Color TGrаy = new Color(0.9f, 0.9f, 0.9f);
+    public static Color TGrаy = new Color(0.7f, 0.7f, 0.7f);
     public static Color SuperBool = new Color(0, 0, 1);
     public static Color Orange = new Color(1, 0.5f, 0);
 }

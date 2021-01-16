@@ -63,6 +63,9 @@ public class ResManager : MonoBehaviour
     [Header("Картинки Ресурсов")]
     public Sprite[] imgRes;
 
+    [Header("Картинки Скилов")]
+    public Sprite[] imgSkill;
+
     private void Awake()
     {
         if (instance == null)

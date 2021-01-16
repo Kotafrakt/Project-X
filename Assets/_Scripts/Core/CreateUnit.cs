@@ -122,6 +122,25 @@ public static class CreateUnit
                 unit.PARAMS[UNIT_ICE_RESIST] = 15;
                 unit.PARAMS[UNIT_ELECTRIC_RESIST] = 15;
                 break;
+            case UnitType.Engineer:
+                unit.type = type;
+                unit.prefab = ResManager.instance.units[5];
+                unit.img = ResManager.instance.unitImg[5];
+                unit.img2 = ResManager.instance.unitImg2[5];
+                unit.PARAMS[UNIT_COST] = 15;
+                unit.PARAMS[UNIT_HP_MAX] = 10;
+                unit.PARAMS[UNIT_HP_REGEN] = 1;
+                unit.PARAMS[UNIT_ATTACK_DELAY] = 5;
+                unit.PARAMS[UNIT_SPEED] = 0.6f;
+                unit.PARAMS[UNIT_DAMAGE] = 15;
+                unit.PARAMS[UNIT_CRIT_DAMAGE] = 1.8f;
+                unit.PARAMS[UNIT_CRIT_CHANCE] = 15;
+                unit.PARAMS[UNIT_DISTANCE] = 15;
+                unit.PARAMS[UNIT_ARMOR] = 15;
+                unit.PARAMS[UNIT_FIRE_RESIST] = 15;
+                unit.PARAMS[UNIT_ICE_RESIST] = 15;
+                unit.PARAMS[UNIT_ELECTRIC_RESIST] = 15;
+                break;
         }
         return unit;
     }

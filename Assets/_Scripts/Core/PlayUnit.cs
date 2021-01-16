@@ -21,6 +21,7 @@ public class PlayUnit : MonoBehaviour
     float saveSpeed;                                    //Сохранение скорости юнита
     bool isBlock;                                       //Столкновение с преградой
     BlockPoint block;                                   //Ссылка на конечный объект
+    Tower tower;
     float attackCouter;                                 //Время последней атаки
 
     int target = 0;
@@ -89,6 +90,28 @@ public class PlayUnit : MonoBehaviour
                 block = null;
             }
         }
+        if (tower != null)
+        {
+            if (isBlock && !tower.isDead)
+            {
+
+                if (attackCouter <= 0)
+                {
+                    attackCouter = attackDelay;
+                    tower.hp -= baseUnit.PARAMS[UNIT_DAMAGE];
+                }
+                else
+                {
+                    attackCouter -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                speed = saveSpeed;
+                isBlock = false;
+                tower = null;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -113,6 +136,24 @@ public class PlayUnit : MonoBehaviour
                 speed = saveSpeed;
                 isBlock = false;
                 block = null;
+            }
+        }
+        else if (collision.tag == "Tower")
+        {
+            Tower target = collision.transform.GetComponent<Tower>();
+            if (!target.isDead)
+            {
+                saveSpeed = speed;
+                speed = 0;
+                //Тут должна быть смена анимации на атаку барьера
+                isBlock = true;
+                tower = target;
+            }
+            else
+            {
+                speed = saveSpeed;
+                isBlock = false;
+                tower = null;
             }
         }
         else if (collision.tag == "Projectile")

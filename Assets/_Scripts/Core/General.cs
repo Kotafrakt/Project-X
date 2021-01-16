@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public enum SkillType
+public enum SkillName
 {
-    none, skill0, skill1, skill2, aoeLink, aoeBoom//aoe - все скилы с уроном по области
-}
-public enum SkillTypeBonus
+    none, skill0, skill1, skill2, aoeLink, aoeBoom, aoeRow, rebound//aoe - все скилы с уроном по области, Линк цепной урон типа молнии, от одного к другому
+}                                                   //Бум это масс урон типа гранаты. Row это урон по линиям, Передняя либо задняя.
+public enum SkillNameB
 {
     none, skillB0, skillB1
 }
@@ -22,18 +22,24 @@ public class General
     public bool isDead = false; // трупик
 
     //Скилы
-    public SkillType skill0;
-    public SkillType skill1;
-    public SkillType skill2;
+    public SkillName skill0;
+    public SkillName skill1;
+    public SkillName skill2;
     public int availableSkill;
 
-    public int skillLvl_0 = 0;
-    public int skillLvl_1 = 0;
-    public int skillLvl_2 = 0;
-    public int skillLvlBoss = 0;
+    public int skill0Delay;
+    public int skill1Delay;
+    public int skill2Delay;
 
 
-    public SkillTypeBonus skillB;
+    public int skill_lvl_0 = 0;
+    public int skill_lvl_1 = 0;
+    public int skill_lvl_2 = 0;
+    public int skill_lvl_B = 0;
+
+
+    public SkillNameB skillB;
+    public int skillBDelay;
     public bool availableSkillB = false;
 
 
