@@ -1,0 +1,4 @@
+This example scene shows the basics of NavTiles.
+Five agents, all following a path with an animator attached.
+For a tutorial on getting started with NavTiles, read the PDF in the main NavTiles folder.
+For more examples and the NavTiles documentation visit our website at: https://www.snowcap-games.com/docs/navtile/

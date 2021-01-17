@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_16;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_4_16;UNITY_2019_4;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_INCLUDE_TESTS;UNITY_ANALYTICS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -64,6 +64,48 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\NavTiles\Scripts\Components\NavTileAgent.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Components\NavTileAgentController.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Components\NavTileExcludeTilemap.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Components\Utilities\NavTileEvents.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Containers\AdditionalJPSPlusData.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Containers\GridInfo.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Containers\NavTileArea.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Containers\NavTileSurfaceData.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Containers\TileData.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Types\Heap.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Types\NavNodeHeap.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Types\SerializableConcurrentDictionary.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Types\SerializableDictionary.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Types\Vector2IntRect.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Data Types\Vector3Rect.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Debug\NavTilePathVisualizer.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Debug\TileGizmoShapeCalculator.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Extensions\VectorExtensions.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Maze Generation\Maze.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Maze Generation\MazeCell.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tile Managers\NavLinkManager.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tile Managers\NavTileAgentManager.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tile Managers\NavTileAreaManager.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tile Managers\NavTileManager.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tile Managers\NavTilePipelineManager.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tile Managers\NavTileSurfaceManager.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tiles\IHasNavTileArea.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tiles\NavLink.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Nav Tiles\NavTile.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Path Smoothing\INavTilePathModifier.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Path Smoothing\LOSSmoothing.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\Algorithms\AStar.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\Algorithms\IPathfindingAlgorithm.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\Algorithms\JPS.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\Algorithms\JPSPlus.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\Algorithms\PathfindingAlgorithmBase.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\FindPathInput.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\HexagonGridHelper.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\Path\NavTilePath.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\Path\PathNode.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pathfinding\PathfindingNode.cs" />
+    <Compile Include="Assets\NavTiles\Scripts\Pipeline\Pipeline.cs" />
     <Compile Include="Assets\_Scripts\Boom.cs" />
     <Compile Include="Assets\_Scripts\Buttons\GeneralBtn.cs" />
     <Compile Include="Assets\_Scripts\Buttons\ResBtn.cs" />
@@ -139,7 +181,9 @@
     <Compile Include="Assets\_Scripts\Menu\MainMenu.cs" />
     <Compile Include="Assets\_Scripts\Menu\SpawnBtn.cs" />
     <Compile Include="Assets\_Scripts\Menu\UnitBtn.cs" />
+    <None Include="Assets\NavTiles\README FIRST.txt" />
     <None Include="Assets\JsonDotNet\link.xml" />
+    <None Include="Assets\NavTiles\Example Scene\Read Me.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Unity/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -319,6 +363,15 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Editor">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Unity/2019.4.16f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -757,6 +810,36 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Editor">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-weaver.Editor">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SpatialTracking">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.XR.LegacyInputHelpers">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
+      <HintPath>C:/Users/ZLoo/Documents/Unity/TowerAttackZ/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
