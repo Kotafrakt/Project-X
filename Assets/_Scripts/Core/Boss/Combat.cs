@@ -29,10 +29,10 @@ public static class Combat
 
     public static List<CombatResult> Attack(TurnBase attackerIn, TurnBase attackedIn, SkillName skillNameIn, SkillNameB skillNameBIn, List<TurnBase> enemyesIn, List<TurnBase> unitsIn, int skill_lvlIn)
     {
-        InfoSkill infoSkill = SkillInfo.GetSkill(skillNameIn);
+        InfoSkill infoSkill = SkillInfo.GetSkill(skillNameIn, skill_lvlIn);
         damageType = infoSkill.damageType;
-        InfoSkill infoSkillB = SkillInfo.GetSkillB(skillNameBIn);
-        damageTypeB = infoSkillB.damageType;
+        InfoSkill infoSkillB = SkillInfo.GetSkillB(skillNameBIn, skill_lvlIn);
+        damageTypeB = infoSkillB.damageTypeB;
         targets.Clear();
         selectedCells.Clear();
         combatResults.Clear();
@@ -40,6 +40,8 @@ public static class Combat
         attacked = attackedIn;
         skillName = skillNameIn;
         skillNameB = skillNameBIn;
+        enemyes.Clear();
+        units.Clear();
         enemyes = enemyesIn;
         units = unitsIn;
         skill_lvl = skill_lvlIn;
@@ -49,7 +51,6 @@ public static class Combat
         if (skillName == SkillName.none && skillNameB == SkillNameB.none)
         {
             damage = attacker.general.PARAMS[GENERAL_DAMAGE_CURRENT] - attacked.general.PARAMS[GENERAL_DEFENSE_CURRENT];
-            Debug.Log(attacker.general.PARAMS[GENERAL_DAMAGE_CURRENT] + " - " + attacked.general.PARAMS[GENERAL_DEFENSE_CURRENT]);
             if (damage <= 0)
             {
                 damage = 0;
@@ -125,6 +126,10 @@ public static class Combat
             }
             CombatResult crs = new CombatResult();
             crs.target = attacked;
+            if (DamageType.Boom == damageType)
+            {
+               //crs.damage = DamageBoom();
+            }
             crs.damage = 20;
             combatResults.Add(crs);
             foreach (TurnBase target in targets)
@@ -134,30 +139,26 @@ public static class Combat
                 crss.damage = 15;
                 combatResults.Add(crss);
             }
-        
+
         }
-        Debug.Log("финальный список: " + combatResults.Count);
         return combatResults; 
     }
 
     static void CheckList()
     {
-        for (int i = 0; i < enemyes.Count; i++)
+        if (!attacked.isPlayer)
         {
-            if (enemyes[i] == attacked)
-            {
-                targetIsPlayer = true;
-            }
-            else
-            {
-                targetIsPlayer = false;
-            }
+            targetIsPlayer = true;
+        }
+        else
+        {
+            targetIsPlayer = false;
         }
     }
     static void WriteToList()
     {
 
-        if (targetIsPlayer)
+        if (!targetIsPlayer)
         {
             for (int i = 0; i < selectedCells.Count; i++)
             {
@@ -165,7 +166,7 @@ public static class Combat
                 {
                     if (units[j].cellNum == selectedCells[i])
                     {
-                        targets.Add(units[j]);
+                        targets.Add(units[j] as TurnUnit);
                     }
                 }
             }
@@ -178,7 +179,7 @@ public static class Combat
                 {
                     if (enemyes[j].cellNum == selectedCells[i])
                     {
-                        targets.Add(enemyes[j]);
+                        targets.Add(enemyes[j] as TurnEnemy);
                     }
                 }
             }
@@ -207,7 +208,6 @@ public static class Combat
     }
     static void LinkChoiceCellLvl_0()
     {
-        Debug.Log("лв 1");
         switch (attacked.cellNum)
         {
             case 0:
@@ -241,17 +241,16 @@ public static class Combat
                 WriteToList();
                 break;
             case 5:
-                a = 2; b = 4;
-                c = -1; d = -1; e = -1; f = -1;
+                c = 2; e = 4;
+                a = -1; b = -1; d = -1; f = -1;
                 SelectedCellsLink();
                 WriteToList();
-                break;
+                break;           
         }
     }
 
     static void LinkChoiceCellLvl_1()
     {
-        Debug.Log("лв 2");
         switch (attacked.cellNum)
         {
             case 0:
@@ -295,7 +294,6 @@ public static class Combat
 
     static void LinkChoiceCellLvl_2()
     {
-        Debug.Log("лв 3");
         switch (attacked.cellNum)
         {
             case 0:
@@ -551,10 +549,26 @@ public static class Combat
         }
     }
 
+    static void DamageBoom()
+    {
+        switch (skill_lvl)
+        {
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+        }
+    }
+
     ///////////////////////////////////////////////////////// ///////////////////////////////////////////////////////// ////////////////////////////////////////////////
     //////////////////////////////////////////////////////Урон наносящийся по линиям. Бьёт либо первый ряд, либо задний/// /////////////////////////////////////////////
     ///////////////////////////////////////////////////////// ///////////////////////////////////////////////////////// ////////////////////////////////////////////////
-    
+
 
     static void Row()
     {
@@ -607,8 +621,8 @@ public static class Combat
                 WriteToList();
                 break;
             case 5:
-                d = 3; e = 4;
-                c = -1; d = -1; e = -1; f = -1;
+                e = 4;
+                a = -1; b = -1; c = -1; d = -1; f = -1;
                 SelectedCellsRow();
                 WriteToList();
                 break;
@@ -788,8 +802,8 @@ public static class Combat
                 WriteToList();
                 break;
             case 5:
-                a = 2; b = 4;
-                c = -1; d = -1; e = -1; f = -1;
+                c = 2; e = 4;
+                a = -1; b = -1; d = -1; f = -1;
                 SelectedCellsRebound();
                 WriteToList();
                 break;

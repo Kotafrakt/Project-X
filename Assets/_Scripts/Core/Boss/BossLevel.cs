@@ -276,6 +276,7 @@ public class BossLevel : MonoBehaviour, IMessage
         skill_B.GetComponent<Image>().color = Colors.WhiteColor;
         skill_0.GetComponent<Image>().color = Colors.GreenColor;
         skill_lvl = skill_0.skill_lvl;
+        selectedGeneral.general.skill0Delay_Curent = selectedGeneral.general.skill0Delay;
     }
     void Skill_1()
     {
@@ -488,6 +489,10 @@ public class BossLevel : MonoBehaviour, IMessage
         else if (unitsCurrent.Count > 0 && enemyesCurrent.Count == 0)
         {
             selectedUnit = unitsCurrent[0];
+            if (selectedEnemy == null)
+            {
+                selectedEnemy = enemyes[0];
+            }
             selectedEnemy.Select();
             selectedUnit.Select();
             attack.interactable = true;
@@ -524,8 +529,12 @@ public class BossLevel : MonoBehaviour, IMessage
     {
         if (selectedUnit.general.skill0 != SkillName.none)
         {
-            skill_0.interactable = true;
-            skill_0.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill0).img;
+            if(selectedGeneral.general.skill0Delay_Curent < 1)
+            {
+                skill_0.interactable = true;
+            }
+            else skill_0.interactable = false;
+            skill_0.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill0, selectedUnit.general.skill_lvl_0).img;
             skill_0.transform.GetChild(0).gameObject.SetActive(true);
             skill_0.skillName = selectedUnit.general.skill0;
             skill_0.skill_lvl = selectedUnit.general.skill_lvl_0;
@@ -533,7 +542,7 @@ public class BossLevel : MonoBehaviour, IMessage
         if (selectedUnit.general.skill1 != SkillName.none)
         {
             skill_1.interactable = true;
-            skill_1.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill1).img;
+            skill_1.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill1, selectedUnit.general.skill_lvl_1).img;
             skill_1.transform.GetChild(0).gameObject.SetActive(true);
             skill_1.skillName = selectedUnit.general.skill1;
             skill_1.skill_lvl = selectedUnit.general.skill_lvl_1;
@@ -541,7 +550,7 @@ public class BossLevel : MonoBehaviour, IMessage
         if (selectedUnit.general.skill2 != SkillName.none)
         {
             skill_2.interactable = true;
-            skill_2.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill2).img;
+            skill_2.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkill(selectedUnit.general.skill2, selectedUnit.general.skill_lvl_2).img;
             skill_2.transform.GetChild(0).gameObject.SetActive(true);
             skill_2.skillName = selectedUnit.general.skill2;
             skill_2.skill_lvl = selectedUnit.general.skill_lvl_2;
@@ -549,10 +558,34 @@ public class BossLevel : MonoBehaviour, IMessage
         if (selectedUnit.general.skillB != SkillNameB.none)
         {
             skill_B.interactable = true;
-            skill_B.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkillB(selectedUnit.general.skillB).img;
+            skill_B.transform.GetChild(0).GetComponent<Image>().sprite = SkillInfo.GetSkillB(selectedUnit.general.skillB, selectedUnit.general.skill_lvl_B).img;
             skill_B.transform.GetChild(0).gameObject.SetActive(true);
             skill_B.skillNameB = selectedUnit.general.skillB;
             skill_B.skill_lvl = selectedUnit.general.skill_lvl_B;
+        }
+    }
+
+    void CheckAdnRegenSkill()
+    {
+        if(selectedGeneral.general.skill0 != skillName)
+        {
+            if (selectedGeneral.general.skill0Delay_Curent > 0)
+                selectedGeneral.general.skill0Delay_Curent--;
+        }
+        if (selectedGeneral.general.skill1 != skillName)
+        {
+            if (selectedGeneral.general.skill1Delay_Curent > 0)
+                selectedGeneral.general.skill1Delay_Curent--;
+        }
+        if (selectedGeneral.general.skill2 != skillName)
+        {
+            if (selectedGeneral.general.skill2Delay_Curent > 0)
+                selectedGeneral.general.skill2Delay_Curent--;
+        }
+        if (selectedGeneral.general.skillB != skillNameB)
+        {
+            if (selectedGeneral.general.skillBDelay_Curent > 0)
+                selectedGeneral.general.skillBDelay_Curent--;
         }
     }
 
@@ -656,13 +689,18 @@ public class BossLevel : MonoBehaviour, IMessage
             else
                 targetIsDead = true;
         }
-        selectedUnit.isEndTurn = true;
+        skill_0.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_1.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_2.GetComponent<Image>().color = Colors.WhiteColor;
+        skill_B.GetComponent<Image>().color = Colors.WhiteColor;
+        defaultSkill.GetComponent<Image>().color = Colors.GreenColor;
         selectedUnit.animator.Play("attack");        
         selectedUnit.isEndTurn = true;
         skillName = SkillName.none;
         skillNameB = SkillNameB.none;
         skill_lvl = 0;
         CleanSkills();
+        CheckAdnRegenSkill();
         return targetIsDead;
     }
     void EnemyAttack()
@@ -765,7 +803,6 @@ public class BossLevel : MonoBehaviour, IMessage
         {
             resultText.text = GameText.VictoryText();
             List<TrophyRes> tRes = Trophy.GetRes(levelName);
-            Debug.Log("tResCount: " + tRes.Count);
             List<TrophyRes> tResSort = new List<TrophyRes>();
             for (int i = 0; i < tRes.Count; i++)
             {
@@ -774,7 +811,6 @@ public class BossLevel : MonoBehaviour, IMessage
                     tResSort.Add(tRes[i]);
                 }
             }
-            Debug.Log("tResSortCount: " + tResSort.Count);
             for (int i = 0; i < tResSort.Count; i++)
             {
                 InfoResources res = GetInfoResources.GetInfo(tResSort[i].num);

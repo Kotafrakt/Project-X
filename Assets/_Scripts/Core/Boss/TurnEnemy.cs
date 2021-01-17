@@ -10,6 +10,7 @@ public class TurnEnemy : TurnBase, IPointerDownHandler, IPointerUpHandler
     float time = 0;
     bool isDown = false;
     bool isShowInfo = false;
+    public bool isPlayer = false;
 
 
     public void OnPointerDown(PointerEventData eventData)

@@ -13,6 +13,7 @@ public class TurnUnit : TurnBase, IPointerDownHandler, IPointerUpHandler
     float time = 0;
     bool isDown = false;
     bool isShowInfo = false;
+    public bool isPlayer = true;
 
 
     public void OnPointerDown(PointerEventData eventData)

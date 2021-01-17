@@ -37,14 +37,42 @@ public static class CreateGeneral
         general.PARAMS[GENERAL_PARRY] = 0 + general.PARAMS[GENERAL_AGILITY] / 5;                                                                   //Парирование удара/отражение
 
         general.skill0 = SkillName.skill0;
-        general.skill_lvl_0 = 2;
+        general.skill_lvl_0 = 1;
+        general.skill0Delay = SkillInfo.GetSkill(general.skill0, general.skill_lvl_0).delay;
+        general.skill0Delay_Curent = general.skill0Delay;
         general.skill1 = SkillName.skill1;
-        general.skill_lvl_1 = 2;
+        general.skill_lvl_1 = 1;
         general.skill2 = SkillName.skill2;
-        general.skill_lvl_2 = 2;
+        general.skill_lvl_2 = 1;
 
         general.skillB = SkillNameB.skillB0;
-        general.skill_lvl_B = 2;
+        general.skill_lvl_B = 1;
+
+        /*switch (general.nameGeneral)    Скилы выдаваемые при создании генералу, в зависимости от его имени либо типа.
+        {
+            case "Алёша":
+                general.skill0 = SkillName.skill0;
+                general.skill_lvl_0 = 1;
+                general.skill1 = SkillName.skill1;
+                general.skill_lvl_1 = 0;
+                general.skill2 = SkillName.skill2;
+                general.skill_lvl_2 = 0;
+                general.skillB = SkillNameB.skillB0;
+                general.skill_lvl_B = 0;
+                break;
+            case "Клоун":
+                general.skill0 = SkillName.skill0;
+                general.skill_lvl_0 = 0;
+                general.skill1 = SkillName.skill1;
+                general.skill_lvl_1 = 0;
+                general.skill2 = SkillName.skill2;
+                general.skill_lvl_2 = 0;
+                general.skillB = SkillNameB.skillB0;
+                general.skill_lvl_B = 0;
+                break;
+
+        }*/
+
 
         //Боевые параметры(Текущий)
         general.PARAMS[GENERAL_HP_CURRENT] = general.PARAMS[GENERAL_HP];
@@ -94,7 +122,7 @@ public static class CreateGeneral
         general.PARAMS[GENERAL_ACCURACY] = 40 + (3 * general.PARAMS[GENERAL_AGILITY] + 2 * general.PARAMS[GENERAL_INTELLECT]) / 10;                                                                //Точность
         general.PARAMS[GENERAL_CRIT_DAMAGE] = 30;                                                              //Критический урон
         general.PARAMS[GENERAL_CRIT_CHANGE] = 5;                                                              //Крит шанс
-        general.PARAMS[GENERAL_INITIATIVE] = 0 + general.PARAMS[GENERAL_INTELLECT] * 5;                                                              //Инициатива
+        general.PARAMS[GENERAL_INITIATIVE] = 5;//0 + general.PARAMS[GENERAL_INTELLECT] * 5;                                                              //Инициатива
         general.PARAMS[GENERAL_PARRY] = 0 + general.PARAMS[GENERAL_AGILITY] / 5;
 
         //Боевые параметры(Текущий)

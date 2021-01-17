@@ -9,4 +9,5 @@ public class TurnBase : MonoBehaviour
     public TextMesh text;
     public bool isEndTurn = false;
     public Animator animator;
+    public bool isPlayer;
 }

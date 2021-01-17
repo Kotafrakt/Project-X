@@ -31,6 +31,10 @@ public class General
     public int skill1Delay;
     public int skill2Delay;
 
+    public int skill0Delay_Curent;
+    public int skill1Delay_Curent;
+    public int skill2Delay_Curent;
+
 
     public int skill_lvl_0 = 0;
     public int skill_lvl_1 = 0;
@@ -40,6 +44,7 @@ public class General
 
     public SkillNameB skillB;
     public int skillBDelay;
+    public int skillBDelay_Curent;
     public bool availableSkillB = false;
 
 

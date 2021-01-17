@@ -381,8 +381,8 @@ public static class CreateGeneralEnemy
 
 
             case "V0B":
-                a = 20; b = 2; c = 3;
-                d = 4; e = 5; f = 60;
+                a = 20; b = 6; c = 6;
+                d = 6; e = 6; f = 60;
                 WriteGenerals();
                     break;
             case "V1B":
