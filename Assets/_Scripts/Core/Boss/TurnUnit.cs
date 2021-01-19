@@ -13,7 +13,6 @@ public class TurnUnit : TurnBase, IPointerDownHandler, IPointerUpHandler
     float time = 0;
     bool isDown = false;
     bool isShowInfo = false;
-    public bool isPlayer = true;
 
 
     public void OnPointerDown(PointerEventData eventData)
@@ -31,7 +30,8 @@ public class TurnUnit : TurnBase, IPointerDownHandler, IPointerUpHandler
     {
         bossLevel = Camera.main.transform.GetComponent<BossLevel>();
         animator = GetComponent<Animator>();
-    }
+        isPlayer = true;
+}
 
     // Update is called once per frame
     void FixedUpdate()

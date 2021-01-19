@@ -51,7 +51,7 @@ namespace Snowcap.NavTiles
         /// All waypoints for the agent to traverse over.
         /// </summary>
         [SerializeField]
-        private List<PathWaypoint> _waypoints = new List<PathWaypoint>();
+        public List<PathWaypoint> _waypoints = new List<PathWaypoint>();
 
         /// <summary>
         /// Whether the agent should loop the waypoint, e.g. go from last waypoint to the first.
